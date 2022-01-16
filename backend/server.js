@@ -8,6 +8,8 @@ const path = require('path');
 
 const users = require("./routes/api/users");
 
+const products = require("./routes/api/addproducts");
+
 const app = express();
 // Bodyparser middleware
 app.use(
@@ -33,6 +35,7 @@ app.use(passport.initialize());
 require("./config/passport")(passport);
 // Routes
 app.use("/api/users", users);
+app.use("/api/products", products);
 app.use('/public', express.static('public'));
 
 // //server static assets if in production

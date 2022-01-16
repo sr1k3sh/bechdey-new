@@ -1,5 +1,5 @@
 import Login from "../components/Login";
-// import Mainpage from "../components/Mainpage";
+import Mainpage from "../components/Mainpage";
 import NotFound from "../components/Notfound";
 import Userpage from "../components/Userpage";
 import AddProduct from "../components/AddProduct";
@@ -15,11 +15,11 @@ const routes = [
         component:Userpage,
         isPrivate:true
     },
-    // {
-    //     path:"/",
-    //     component:Mainpage,
-    //     isPrivate:false
-    // },
+    {
+        path:"/home",
+        component:Mainpage,
+        isPrivate:false
+    },
     {
         path:"/addproduct",
         component:AddProduct,

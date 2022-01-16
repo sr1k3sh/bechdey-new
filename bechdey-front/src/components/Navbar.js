@@ -19,7 +19,7 @@ export default function Navbar(){
                             <Link className="" to="/addproduct">Sell on Bechday</Link>
                         </div>
                         <div className="navbar__mainbar mb-3">
-                            <h2><Link className="navbar__icon" to="/">Bechdey.</Link></h2>
+                            <h2><Link className="navbar__icon" to="/home">Bechdey.</Link></h2>
                             <div className="navbar__mainbar-right">
                                 <form className="d-flex">
                                     <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "../context";
+import { useHistory } from "react-router-dom";
 
 export default function AddProduct(){
     const [title, setTitle] = useState("");
@@ -11,6 +12,8 @@ export default function AddProduct(){
     const [usedFor, setUsedFor] = useState("");
     const [file, setFile] = useState();
     const userDetails = useAuthState();
+
+    const history = useHistory();
 
     useEffect(()=>{
 
@@ -30,26 +33,14 @@ export default function AddProduct(){
         formData.append('file',file[0]);
 
         try{
-            await axios.post('/api/users/addpost',formData).then(res=>{
-                console.log(res);
+            await axios.post('/api/products/addpost',formData).then(res=>{
+                history.push('/')
             });
         }catch(err){
             console.log(err);
         }
     }
 
-    const test = async (e) =>{
-        e.preventDefault();
-        console.log(e)
-        let formData = new FormData();
-        formData.append("data",file[0]);
-        formData.append("test",'checking');
-        // formData.append('title','teti');
-        formData.append('file',file);
-        await axios.post('/api/users/upload',formData).then(res=>{
-            console.log(res);
-        });
-    }
     return (
         <React.Fragment>
             <div className="col-xl-8 m-auto">
@@ -118,7 +109,7 @@ export default function AddProduct(){
                     <button type="submit" className="btn btn-primary">Post Ad</button>
                 </form>
 
-                <img src="/public/brooke-lark-29h2n639YDA-unsplash.jpg"></img>
+                {/* <img src="/public/brooke-lark-29h2n639YDA-unsplash.jpg"></img> */}
             </div>
         </React.Fragment>
     )
