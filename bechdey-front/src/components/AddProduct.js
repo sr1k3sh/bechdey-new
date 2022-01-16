@@ -1,70 +1,124 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useAuthState } from "../context";
 
 export default function AddProduct(){
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+    const [price, setPrice] = useState("");
+    const [negotiate, setNegotiate] = useState(false);
+    const [condition, setCondition] = useState("");
+    const [usedFor, setUsedFor] = useState("");
+    const [file, setFile] = useState();
+    const userDetails = useAuthState();
+
+    useEffect(()=>{
+
+    },[])
+
+    const onSubmitPost = async(e) =>{
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.append('userId',userDetails.userId);
+        formData.append('title',title);
+        formData.append("description",description);
+        formData.append("price",price);
+        formData.append("negotiate",negotiate);
+        formData.append('condition',condition);
+        formData.append("usedFor",usedFor);
+        formData.append('file',file[0]);
+
+        try{
+            await axios.post('/api/users/addpost',formData).then(res=>{
+                console.log(res);
+            });
+        }catch(err){
+            console.log(err);
+        }
+    }
+
+    const test = async (e) =>{
+        e.preventDefault();
+        console.log(e)
+        let formData = new FormData();
+        formData.append("data",file[0]);
+        formData.append("test",'checking');
+        // formData.append('title','teti');
+        formData.append('file',file);
+        await axios.post('/api/users/upload',formData).then(res=>{
+            console.log(res);
+        });
+    }
     return (
         <React.Fragment>
             <div className="col-xl-8 m-auto">
-                <form className="">
+                <form className="" onSubmit={onSubmitPost}>
                     <div className="bd-addform__inputgroup mb-4">
                         <label className="form-label">Title</label>
-                        <input className="form-control" placeholder="enter title of product"></input>
+                        <input className="form-control" placeholder="enter title of product" onChange={e=>setTitle(e.target.value)}></input>
                     </div>
                     <div className="bd-addform__inputgroup mb-4">
                         <label className="form-label">Description</label>
-                        <textarea className="form-control" placeholder="Add Description"></textarea>
+                        <textarea className="form-control" placeholder="Add Description" onChange={e=>setDescription(e.target.value)}></textarea>
                     </div>
                     <div className="bd-addform__inputgroup mb-4">
                         <label className="form-label">Price</label>
-                        <input className="form-control" type="number" placeholder="price in NPR"></input>
+                        <input className="form-control" type="number" placeholder="price in NPR" onChange={e=>setPrice(e.target.value)}></input>
                     </div>
                     <div className="bd-addform__inputgroup mb-4">
                         <span>Is price negotiable?</span>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="bechdey_negotitate" id="bechdey_fixed"/>
-                            <label class="form-check-label" for="bechdey_fixed">
+                        <div className="form-check form-check-inline">
+                            <input className="form-check-input" type="radio" name="bechdey_negotitate" value={false} id="bechdey_fixed" onChange={e=>setNegotiate(e.target.value)}/>
+                            <label className="form-check-label" htmlFor="bechdey_fixed">
                                 Fixed
                             </label>
                         </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="bechdey_negotitate" id="bechday_negotiable" checked/>
-                            <label class="form-check-label" for="bechday_negotiable">
+                        <div className="form-check form-check-inline">
+                            <input className="form-check-input" type="radio" name="bechdey_negotitate" value={true} id="bechday_negotiable" onChange={e=>setNegotiate(e.target.value)}/>
+                            <label className="form-check-label" htmlFor="bechday_negotiable">
                                 Negotiable
                             </label>
                         </div>
                     </div>
                     <div className="bd-addform__inputgroup mb-4">
                         <span>Condition</span>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="bechdey_condition" id="bechdey_brandnew"/>
-                            <label class="form-check-label" for="bechdey_brandnew">
+                        <div className="form-check form-check-inline">
+                            <input className="form-check-input" type="radio" value="Brand New" onChange={e=>setCondition(e.target.value)} name="bechdey_condition" id="bechdey_brandnew"/>
+                            <label className="form-check-label" htmlFor="bechdey_brandnew">
                                 Brand New
                             </label>
                         </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="bechdey_condition" id="bechday_likenew" checked/>
-                            <label class="form-check-label" for="bechday_likenew">
+                        <div className="form-check form-check-inline">
+                            <input className="form-check-input" type="radio" value="Like New" onChange={e=>setCondition(e.target.value)} name="bechdey_condition" id="bechday_likenew"/>
+                            <label className="form-check-label" htmlFor="bechday_likenew">
                                 Like New
                             </label>
                         </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="bechdey_condition" id="bechday_good" checked/>
-                            <label class="form-check-label" for="bechday_good">
+                        <div className="form-check form-check-inline">
+                            <input className="form-check-input" type="radio" value="Good" onChange={e=>setCondition(e.target.value)} name="bechdey_condition" id="bechday_good"/>
+                            <label className="form-check-label" htmlFor="bechday_good">
                                 Good
                             </label>
                         </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="bechdey_condition" id="bechday_notworking" checked/>
-                            <label class="form-check-label" for="bechday_notworking">
+                        <div className="form-check form-check-inline">
+                            <input className="form-check-input" type="radio" value="Not Working" onChange={e=>setCondition(e.target.value)} name="bechdey_condition" id="bechday_notworking"/>
+                            <label className="form-check-label" htmlFor="bechday_notworking">
                                 Not Working
                             </label>
                         </div>
                     </div>
                     <div className="bd-addform__inputgroup mb-4">
                         <label className="form-label">Used for</label>
-                        <input className="form-control" placeholder="Eg. Months"></input>
+                        <input className="form-control" placeholder="Eg. Months" onChange={e=>setUsedFor(e.target.value)}></input>
+                    </div>
+                    <div className="bd-addform__inputgroup mb-4">
+                        <input type="file" className="admin__input" id="myFile" name="myFile" onChange={e=>setFile(e.target.files)}/>
                     </div>
                     <button type="submit" className="btn btn-primary">Post Ad</button>
                 </form>
+
+                <img src="/public/brooke-lark-29h2n639YDA-unsplash.jpg"></img>
             </div>
         </React.Fragment>
     )

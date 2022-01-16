@@ -15,6 +15,20 @@ const Password = require('../../models/Password');
 
 const AddForm = require("../../models/AddForm");
 
+const File = require('../../models/File');
+const multer = require("multer");
+
+
+const storage = multer.diskStorage({
+  destination: (req, res, cb) => {
+      cb(null, "./public");
+  },
+  filename: (req, res, cb) => {
+      cb(null, res.originalname);
+  }
+});
+const upload = multer({ storage: storage });
+
 // @route POST api/users/passwords
 // @desc add password
 // @access Public
@@ -114,13 +128,36 @@ router.post("/register", (req, res) => {
     });
 });
 
-router.post('/addpost',(req,res)=>{
+
+
+router.post("/upload",upload.single("data"), async(req,res)=>{
+  try{
+    const newData = new File({
+      name:req.file.filename,
+      test:req.body.test
+    })
+    res.status(200).json({
+      status: "success",
+      message: "File created successfully!!",
+    });
+    newData
+          .save()
+          .then(data => res.json(data))
+          .catch(err => console.log(err));
+  }catch(err){
+    res.json({
+      err
+    })
+  }
+})
+
+router.post('/addpost',upload.single("file"),async(req,res)=>{
   const { errors, isValid } = validatePostForm(req.body);
 
   if(!isValid){
     return res.status(400).json(errors);
   }
-  AddForm.findOne({title:req.body.title}).then(t =>{
+  await AddForm.findOne({title:req.body.title}).then(t =>{
     if (t) {
       return res.status(400).json({ title: "url already exists" });
     } else {
@@ -131,7 +168,8 @@ router.post('/addpost',(req,res)=>{
           price: req.body.price,
           negotiate: req.body.negotiate,
           condition: req.body.condition,
-          usedFor: req.body.usedFor
+          usedFor: req.body.usedFor,
+          name:req.file.filename,
         });
 
         newData

@@ -30,7 +30,20 @@ const addFormSchema = new Schema({
     usedFor:{
         type:String,
         required:true
-    }
+    },
+    img:
+    {
+        data: Buffer,
+        contentType: String
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+    },
+    name: {
+        type: String,
+        required: [true, "Uploaded file must have a name"],
+    },
 
 });
 module.exports = User = mongoose.model("addform", addFormSchema);

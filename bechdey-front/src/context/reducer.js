@@ -5,10 +5,15 @@ let user = localStorage.getItem('currentUser')
 let token = localStorage.getItem('jwtToken')
 	? localStorage.getItem('jwtToken')
 	: '';
+let id = localStorage.getItem('jwtToken')
+	? jwt_decode(localStorage.getItem('jwtToken')).id
+	: '';
+
 
 export const initialState = {
 	user: '' || user,
 	token: '' || token,
+	userId:'' || id,
 	loading: false,
 	errorMessage: null,
 };
@@ -25,6 +30,7 @@ export const AuthReducer = (initialState, action) => {
                 return {
                     ...initialState,
                     user: jwt_decode(action.payload).name,
+					userId:jwt_decode(action.payload).id,
                     token: action.payload,
                     loading: false,
                 };
