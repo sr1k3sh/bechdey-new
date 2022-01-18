@@ -31,6 +31,18 @@ const addFormSchema = new Schema({
         type:String,
         required:true
     },
+    category:{
+        type:String,
+        required:true
+    },
+    subcategory:{
+        type:String,
+        required:true
+    },
+    maincategory:{
+        type:String,
+        required:true
+    },
     img:
     {
         data: Buffer,
@@ -41,7 +53,7 @@ const addFormSchema = new Schema({
         default: Date.now,
     },
     name: {
-        type: String,
+        type: Array,
         required: [true, "Uploaded file must have a name"],
     },
 

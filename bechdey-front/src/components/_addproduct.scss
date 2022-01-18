@@ -3,4 +3,19 @@
         display: flex;
         flex-direction: column;
     }
+    &__upload-list{
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        overflow: auto;
+        gap: 1rem;
+    }
+    &__uploaded-img{
+        width: 350px;
+        object-fit: contain;
+        height: 350px;
+        background: rosybrown;
+        border-radius: 1rem;
+    }
 }

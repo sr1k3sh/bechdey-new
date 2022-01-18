@@ -11,15 +11,18 @@ export default function AddProduct(){
     const [negotiate, setNegotiate] = useState(false);
     const [condition, setCondition] = useState("");
     const [usedFor, setUsedFor] = useState("");
-    const [file, setFile] = useState();
+    const [file, setFile] = useState([]);
     const userDetails = useAuthState();
+    const [imageUrl, setImageUrl] = useState([]);
 
     const history = useHistory();
 
     const cat = category;
 
+    const [Category, setCategory] = useState();
+    const [subCategory, setSubCategory] = useState();
     const [mainCategory, setMainCategory] = useState();
-    const [subMainCategory, setSubMainCategory] = useState();
+
 
     useEffect(()=>{
         
@@ -36,8 +39,10 @@ export default function AddProduct(){
         formData.append("negotiate",negotiate);
         formData.append('condition',condition);
         formData.append("usedFor",usedFor);
-        formData.append('file',file[0]);
-
+        formData.append('myFile',file);
+        formData.append('category',Category);
+        formData.append('subcategory',subCategory);
+        formData.append('maincategory',mainCategory);
         try{
             await axios.post('/api/products/addpost',formData).then(res=>{
                 history.push('/')
@@ -47,32 +52,46 @@ export default function AddProduct(){
         }
     }
 
+    const onImageuploadChange = async(e) =>{
+        e.preventDefault();
+        const checkfile = e.target.files
+
+        setFile(checkfile);
+        Array.from(checkfile).forEach(f=>{
+            setImageUrl(prevArr=>[...prevArr,URL.createObjectURL(f)]);
+        })
+    }
+
     return (
         <React.Fragment>
             <div className="col-xl-8 m-auto">
-                <form className="" onSubmit={onSubmitPost}>
+                <form className="" action="/api/products/addpost" encType="multipart/form-data" method="POST">
+                    <div className="bd-addform__inputgroup mb-4">
+                        <label className="form-label d-none">Title</label>
+                        <input type="hidden" className="form-control" name="userId" defaultValue={userDetails.userId}></input>
+                    </div>
                     <div className="bd-addform__inputgroup mb-4">
                         <label className="form-label">Title</label>
-                        <input className="form-control" placeholder="enter title of product" onChange={e=>setTitle(e.target.value)}></input>
+                        <input className="form-control" name="title" placeholder="enter title of product" onChange={e=>setTitle(e.target.value)}></input>
                     </div>
                     <div className="bd-addform__inputgroup mb-4">
                         <label className="form-label">Description</label>
-                        <textarea className="form-control" placeholder="Add Description" onChange={e=>setDescription(e.target.value)}></textarea>
+                        <textarea className="form-control" name="description" placeholder="Add Description" onChange={e=>setDescription(e.target.value)}></textarea>
                     </div>
                     <div className="bd-addform__inputgroup mb-4">
                         <label className="form-label">Price</label>
-                        <input className="form-control" type="number" placeholder="price in NPR" onChange={e=>setPrice(e.target.value)}></input>
+                        <input className="form-control" name="price" type="number" placeholder="price in NPR" onChange={e=>setPrice(e.target.value)}></input>
                     </div>
                     <div className="bd-addform__inputgroup mb-4">
                         <span>Is price negotiable?</span>
                         <div className="form-check form-check-inline">
-                            <input className="form-check-input" type="radio" name="bechdey_negotitate" value={false} id="bechdey_fixed" onChange={e=>setNegotiate(e.target.value)}/>
+                            <input className="form-check-input" name="negotiate" type="radio" value={false} id="bechdey_fixed" onChange={e=>setNegotiate(e.target.value)}/>
                             <label className="form-check-label" htmlFor="bechdey_fixed">
                                 Fixed
                             </label>
                         </div>
                         <div className="form-check form-check-inline">
-                            <input className="form-check-input" type="radio" name="bechdey_negotitate" value={true} id="bechday_negotiable" onChange={e=>setNegotiate(e.target.value)}/>
+                            <input className="form-check-input" type="radio" value={true} id="bechday_negotiable" onChange={e=>setNegotiate(e.target.value)}/>
                             <label className="form-check-label" htmlFor="bechday_negotiable">
                                 Negotiable
                             </label>
@@ -81,25 +100,25 @@ export default function AddProduct(){
                     <div className="bd-addform__inputgroup mb-4">
                         <span>Condition</span>
                         <div className="form-check form-check-inline">
-                            <input className="form-check-input" type="radio" value="Brand New" onChange={e=>setCondition(e.target.value)} name="bechdey_condition" id="bechdey_brandnew"/>
+                            <input className="form-check-input" name="condition" type="radio" value="Brand New" onChange={e=>setCondition(e.target.value)} id="bechdey_brandnew"/>
                             <label className="form-check-label" htmlFor="bechdey_brandnew">
                                 Brand New
                             </label>
                         </div>
                         <div className="form-check form-check-inline">
-                            <input className="form-check-input" type="radio" value="Like New" onChange={e=>setCondition(e.target.value)} name="bechdey_condition" id="bechday_likenew"/>
+                            <input className="form-check-input" type="radio" value="Like New" onChange={e=>setCondition(e.target.value)} id="bechday_likenew"/>
                             <label className="form-check-label" htmlFor="bechday_likenew">
                                 Like New
                             </label>
                         </div>
                         <div className="form-check form-check-inline">
-                            <input className="form-check-input" type="radio" value="Good" onChange={e=>setCondition(e.target.value)} name="bechdey_condition" id="bechday_good"/>
+                            <input className="form-check-input" type="radio" value="Good" onChange={e=>setCondition(e.target.value)} id="bechday_good"/>
                             <label className="form-check-label" htmlFor="bechday_good">
                                 Good
                             </label>
                         </div>
                         <div className="form-check form-check-inline">
-                            <input className="form-check-input" type="radio" value="Not Working" onChange={e=>setCondition(e.target.value)} name="bechdey_condition" id="bechday_notworking"/>
+                            <input className="form-check-input" type="radio" value="Not Working" onChange={e=>setCondition(e.target.value)} id="bechday_notworking"/>
                             <label className="form-check-label" htmlFor="bechday_notworking">
                                 Not Working
                             </label>
@@ -107,11 +126,11 @@ export default function AddProduct(){
                     </div>
                     <div className="bd-addform__inputgroup mb-4">
                         <label className="form-label">Used for</label>
-                        <input className="form-control" placeholder="Eg. Months" onChange={e=>setUsedFor(e.target.value)}></input>
+                        <input className="form-control" name="usedFor" placeholder="Eg. Months" onChange={e=>setUsedFor(e.target.value)}></input>
                     </div>
                     <div className="bd-addform__inputgroup mb-4">
                         <label className="form-label">Category</label>
-                        <select className="form-control" defaultValue={'DEFAULT'} onChange={e=>setMainCategory(e.target.value)}>
+                        <select className="form-control" name="category" defaultValue={'DEFAULT'} onChange={e=>setCategory(e.target.value)}>
                             <option value="DEFAULT">Select category</option>
                             {
                                 Object.keys(cat).map((g,i)=>{
@@ -121,12 +140,12 @@ export default function AddProduct(){
                         </select>
                     </div>
                     {
-                        mainCategory && cat[mainCategory] && <div className="bd-addform__inputgroup mb-4">
+                        Category && cat[Category] && <div className="bd-addform__inputgroup mb-4">
                             <label className="form-label">Sub category</label>
-                                 <select className="form-control" defaultValue={'DEFAULT'} onChange={e=>setSubMainCategory(e.target.value)}>
+                                 <select className="form-control" name="subcategory" defaultValue={'DEFAULT'} onChange={e=>setSubCategory(e.target.value)}>
                                     <option key="0_sub-main" value="DEFAULT">Select sub category</option>
                                     {
-                                        Object.keys(cat[mainCategory]).map((g,i)=>{
+                                        Object.keys(cat[Category]).map((g,i)=>{
                                             return <option key={i+"_sub-main"} value={g}>{g}</option>
                                         })
                                     }
@@ -135,12 +154,12 @@ export default function AddProduct(){
                         </div>
                     }
                     {
-                        subMainCategory && cat[mainCategory][subMainCategory] && <div className="bd-addform__inputgroup mb-4">
+                        subCategory && cat[Category][subCategory] && <div className="bd-addform__inputgroup mb-4">
                             <label className="form-label">Sub category</label>
-                                 <select className="form-control" defaultValue={'DEFAULT'}>
+                                 <select className="form-control" name="maincategory" defaultValue={'DEFAULT'} onChange={e=>setMainCategory(e.target.value)}>
                                     <option key="0_sub-main-value" value="DEFAULT">Select sub category</option>
                                     {
-                                        cat[mainCategory][subMainCategory].map((g,i)=>{
+                                        cat[Category][subCategory].map((g,i)=>{
                                             return <option key={i+"_sub-main-value"} value={g}>{g}</option>
                                         })
                                     }
@@ -149,12 +168,26 @@ export default function AddProduct(){
                         </div>
                     }
                     <div className="bd-addform__inputgroup mb-4">
-                        <input type="file" className="admin__input" id="myFile" name="myFile" onChange={e=>setFile(e.target.files)}/>
+                        <label className="form-label">Upload image</label>
+                        <input multiple type="file" className="from-control" name="uploadedImages" onChange={onImageuploadChange}/>
+                        {
+                            imageUrl && <ul className="bd-addform__upload-list">
+                                {
+                                    imageUrl.map((img,i)=><li className="bd-addform__upload-item" key={i+"_upload-img"} ><img className="bd-addform__uploaded-img mt-4" src={img} alt="upload data"></img></li>)
+                                   
+                                }
+                            </ul>
+
+                        }
                     </div>
                     <button type="submit" className="btn btn-primary">Post Ad</button>
                 </form>
 
-                {/* <img src="/public/brooke-lark-29h2n639YDA-unsplash.jpg"></img> */}
+                {/* <form action="/api/products/test" encType="multipart/form-data" method="POST">
+                    <input type='text' name='valrik'></input>
+                    <input type="file" name="uploadedImages" multiple onChange={onImageuploadChange}/>
+                    <input type="submit" value="uploading_img"/>
+                </form> */}
             </div>
         </React.Fragment>
     )

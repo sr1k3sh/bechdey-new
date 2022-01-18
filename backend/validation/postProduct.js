@@ -2,29 +2,29 @@ const Validator = require("validator");
 const isEmpty = require("is-empty");
 const validUrl = require('valid-url');
 module.exports = function validatePostForm(data) {
-  let errors = {};
-// Convert empty fields to an empty string so we can use validator function
-  data.url = !isEmpty(data.url) ? data.url : "";
-  data.password = !isEmpty(data.password) ? data.password : "";
-  data.userId = !isEmpty(data.userId) ? data.userId : "";
-  data.userName = !isEmpty(data.userName) ? data.userName : "";
+    let errors = {};
 
-  if(Validator.isEmpty(data.userId)){
-    errors.userId = "Empty UserData"
-  }
+    // Convert empty fields to an empty string so we can use validator function
+    data.password = !isEmpty(data.password) ? data.password : "";
+    data.userId = !isEmpty(data.userId) ? data.userId : "";
+    data.userName = !isEmpty(data.userName) ? data.userName : "";
 
-  if(Validator.isEmpty(data.title)){
-    errors.title = "Empty title"
-  }
+    if(Validator.isEmpty(data.userId)){
+        errors.userId = "Empty UserData"
+    }
 
-// Password checks
-  if (Validator.isEmpty(data.description)) {
-    errors.description = "Empty description";
-  }
+    if(Validator.isEmpty(data.title)){
+        errors.title = "Empty title"
+    }
 
-  if(Validator.isEmpty(data.price)){
-      errors.price = "Empty price"
-  }
+    // Password checks
+    if (Validator.isEmpty(data.description)) {
+        errors.description = "Empty description";
+    }
+
+    if(Validator.isEmpty(data.price)){
+        errors.price = "Empty price"
+    }
 
     if(Validator.isEmpty(data.negotiate)){
         errors.negotiate = "Empty negotiate"
@@ -38,10 +38,19 @@ module.exports = function validatePostForm(data) {
         errors.usedFor = "Empty usedFor"
     }
 
-    
+    if(Validator.isEmpty(data.category)){
+        errors.category = "Please select a category"
+    }
 
-return {
-    errors,
-    isValid: isEmpty(errors)
-  };
+    if(Validator.isEmpty(data.subcategory)){
+        errors.subcategory = "Please select a subcategory"
+    }
+
+    if(Validator.isEmpty(data.maincategory)){
+        errors.maincategory = "Please select a maincategory"
+    }
+    return {
+        errors,
+        isValid: isEmpty(errors)
+    };
 };
