@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "../context";
 import { useHistory } from "react-router-dom";
+import { category } from "../context/catagories";
 
 export default function AddProduct(){
     const [title, setTitle] = useState("");
@@ -15,8 +16,13 @@ export default function AddProduct(){
 
     const history = useHistory();
 
-    useEffect(()=>{
+    const cat = category;
 
+    const [mainCategory, setMainCategory] = useState();
+    const [subMainCategory, setSubMainCategory] = useState();
+
+    useEffect(()=>{
+        
     },[])
 
     const onSubmitPost = async(e) =>{
@@ -103,6 +109,45 @@ export default function AddProduct(){
                         <label className="form-label">Used for</label>
                         <input className="form-control" placeholder="Eg. Months" onChange={e=>setUsedFor(e.target.value)}></input>
                     </div>
+                    <div className="bd-addform__inputgroup mb-4">
+                        <label className="form-label">Category</label>
+                        <select className="form-control" defaultValue={'DEFAULT'} onChange={e=>setMainCategory(e.target.value)}>
+                            <option value="DEFAULT">Select category</option>
+                            {
+                                Object.keys(cat).map((g,i)=>{
+                                    return <option key={i+"_main"} value={g}>{g}</option>
+                                })
+                            }
+                        </select>
+                    </div>
+                    {
+                        mainCategory && cat[mainCategory] && <div className="bd-addform__inputgroup mb-4">
+                            <label className="form-label">Sub category</label>
+                                 <select className="form-control" defaultValue={'DEFAULT'} onChange={e=>setSubMainCategory(e.target.value)}>
+                                    <option key="0_sub-main" value="DEFAULT">Select sub category</option>
+                                    {
+                                        Object.keys(cat[mainCategory]).map((g,i)=>{
+                                            return <option key={i+"_sub-main"} value={g}>{g}</option>
+                                        })
+                                    }
+                                </select>
+                                
+                        </div>
+                    }
+                    {
+                        subMainCategory && cat[mainCategory][subMainCategory] && <div className="bd-addform__inputgroup mb-4">
+                            <label className="form-label">Sub category</label>
+                                 <select className="form-control" defaultValue={'DEFAULT'}>
+                                    <option key="0_sub-main-value" value="DEFAULT">Select sub category</option>
+                                    {
+                                        cat[mainCategory][subMainCategory].map((g,i)=>{
+                                            return <option key={i+"_sub-main-value"} value={g}>{g}</option>
+                                        })
+                                    }
+                                </select>
+                                
+                        </div>
+                    }
                     <div className="bd-addform__inputgroup mb-4">
                         <input type="file" className="admin__input" id="myFile" name="myFile" onChange={e=>setFile(e.target.files)}/>
                     </div>
