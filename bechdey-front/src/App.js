@@ -4,6 +4,7 @@ import routes from './config/Routes';
 import AppRoutes from './components/AppRoute';
 import { AuthProvider } from './context/Context';
 import Navbar from './components/Navbar';
+import 'popper.js';
 import './../node_modules/bootstrap/dist/js/bootstrap.esm';
 function App() {
   return (
