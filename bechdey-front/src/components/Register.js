@@ -1,6 +1,6 @@
 import React ,{useState, useReducer}from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { initRegisterState, RegisterReducer } from "../context/reducer";
 import form2 from './../assets/svgs/form2.svg';
 export default function Register(){
@@ -83,8 +83,12 @@ export default function Register(){
                                 </div>
                             }
                         </div>
-                        <div className="col-xl-12">
+                        <div className="col-xl-12 mb-4">
                             <button type='submit' className='btn btn-outline-primary w-100'>Register</button>
+                        </div>
+                        <div className="col-xl-12 mb-4">
+                            <span>Already have a account? </span>
+                            <Link to="/login">Login from here</Link>
                         </div>
                     </form>
                     <div className="col-xl-7">

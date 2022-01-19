@@ -184,12 +184,13 @@ router.post('/addpost',upload.single("file"),async(req,res)=>{
 // @access Public
 router.post("/login", (req, res) => {
     // Form validation
-  const { errors, isValid } = validateLoginInput(req.body);
-  // Check validation
+    const { errors, isValid } = validateLoginInput(req.body);
+    // Check validation
+
     if (!isValid) {
       return res.status(400).json(errors);
     }
-  const email = req.body.email;
+    const email = req.body.email;
     const password = req.body.password;
   // Find user by email
     User.findOne({ email }).then(user => {

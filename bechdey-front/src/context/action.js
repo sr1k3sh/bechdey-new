@@ -29,12 +29,13 @@ export async function loginUser(dispatch, loginPayload) {
                 localStorage.setItem('currentUser', decoded.name);
 			    return decoded;
             }
+        }).catch(err=>{
+            dispatch({ type: 'LOGIN_ERROR', error: err.response.data });
         });
-
 		return response;
-	} catch (error) {
-		dispatch({ type: 'LOGIN_ERROR', error: error });
-		console.log(error);
+	} 
+    catch (error) {
+		dispatch({ type: 'LOGIN_ERROR', error: error.response.data });
 	}
 }
 
