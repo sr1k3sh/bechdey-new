@@ -56,7 +56,7 @@ export default function Login(props){
                         </div>
                     </form>
                     <div className="col-xl-7">
-                        <img className="bd-auth__img" src={form2}></img>
+                        <img className="bd-auth__img" src={form2} alt="login form"></img>
                     </div>
                 </div>
             </div>

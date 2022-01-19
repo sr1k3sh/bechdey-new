@@ -1,4 +1,5 @@
 import React, { useEffect, useReducer } from "react";
+import { Link } from "react-router-dom";
 import { fetchAds } from "../context/action";
 import { dataReducer, initialDataState } from "../context/reducer";
 import ProductCard from "./ProductCard";
@@ -58,7 +59,7 @@ export default function RecentlyProducts(){
           let result = paginationNumbers.map(number => {
                 return (
                     <li className={(dataCount?.currentPage === number ? ' active' : '') + ' page-item'} key={number}>
-                        <a className={(dataCount?.currentPage === number ? ' active' : '') + ' page-link'} key={number} id={number} onClick={handleClick}>{number}</a>
+                        <Link className={(dataCount?.currentPage === number ? ' active' : '') + ' page-link'} key={number} id={number} onClick={handleClick}>{number}</Link>
                     </li>
                 );
           });
@@ -98,13 +99,13 @@ export default function RecentlyProducts(){
                         <nav className="bd-pagination__wrapper" aria-label="Pagination link">
                             <ul className="pagination">
                                 <li className={dataCount?.hasPrevPage?"page-item":"page-item disabled"}>
-                                    <a className="page-link" href="#" tabIndex="-1" aria-disabled="true">Previous</a>
+                                    <Link className="page-link" to="/" tabIndex="-1" aria-disabled="true">Previous</Link>
                                 </li>
                                 {
                                     ShowPaginationNumbers(dataCount?.totalPages)
                                 }
                                 <li className={dataCount?.hasNextPage?"page-item":"page-item disabled"}>
-                                    <a className="page-link" href="#">Next</a>
+                                    <Link className="page-link" to="/">Next</Link>
                                 </li>
                             </ul>
                         </nav>
