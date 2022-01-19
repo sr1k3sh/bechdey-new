@@ -15,8 +15,39 @@ export const initialState = {
 	token: '' || token,
 	userId:'' || id,
 	loading: false,
-	errorMessage: null,
+	errorMessage: null
 };
+
+export const initialDataState = {
+	dataLoading:true,
+	data:null,
+	dataError:null,
+}
+
+export const dataReducer = (initialDataState, action) => {
+	switch (action.type) {
+		case "DATA_LOADING":
+			return {
+				...initialDataState,
+				dataLoading:true,
+			}
+		case "DATA_LOADED":
+			return {
+				...initialDataState,
+				dataLoading:false,
+				data:action.payload
+			}
+		case "DATA_ERROR":
+			return{
+				...initialDataState,
+				dataLoading:false,
+				data:null,
+				dataError:action.error
+			}
+		default:
+			throw new Error(`Unhandled action type: ${action.type}`);
+	}
+}
 
 export const AuthReducer = (initialState, action) => {
 	switch (action.type) {

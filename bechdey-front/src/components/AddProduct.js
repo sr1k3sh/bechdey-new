@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "../context";
 import { useHistory } from "react-router-dom";
-import { category } from "../context/catagories";
+import { category, location } from "../context/catagories";
 
 export default function AddProduct(){
     const [title, setTitle] = useState("");
@@ -18,19 +18,21 @@ export default function AddProduct(){
     const history = useHistory();
 
     const cat = category;
+    const loc = location;
 
     const [Category, setCategory] = useState();
     const [subCategory, setSubCategory] = useState();
     const [mainCategory, setMainCategory] = useState();
+    const [getLocation, setLocation] = useState();
 
 
     useEffect(()=>{
-        
     },[])
 
     const onSubmitPost = async(e) =>{
         e.preventDefault();
 
+        console.log(e);
         const formData = new FormData();
         formData.append('userId',userDetails.userId);
         formData.append('title',title);
@@ -39,13 +41,24 @@ export default function AddProduct(){
         formData.append("negotiate",negotiate);
         formData.append('condition',condition);
         formData.append("usedFor",usedFor);
-        formData.append('myFile',file);
+        for (const f of file) {
+            formData.append('file', f)
+        }
         formData.append('category',Category);
         formData.append('subcategory',subCategory);
         formData.append('maincategory',mainCategory);
+        formData.append('location',getLocation);
         try{
-            await axios.post('/api/products/addpost',formData).then(res=>{
-                history.push('/')
+            await axios(
+                {
+                    method: "post",
+                    url: '/api/products/addpost',
+                    data: formData,
+                    headers: { "Content-Type": "multipart/form-data" },
+                }
+            ).then(res=>{
+                console.log(res);
+                history.push('/home')
             });
         }catch(err){
             console.log(err);
@@ -65,7 +78,7 @@ export default function AddProduct(){
     return (
         <React.Fragment>
             <div className="col-xl-8 m-auto">
-                <form className="" action="/api/products/addpost" encType="multipart/form-data" method="POST">
+                <form className="" onSubmit={onSubmitPost} encType="multipart/form-data">
                     <div className="bd-addform__inputgroup mb-4">
                         <label className="form-label d-none">Title</label>
                         <input type="hidden" className="form-control" name="userId" defaultValue={userDetails.userId}></input>
@@ -91,7 +104,7 @@ export default function AddProduct(){
                             </label>
                         </div>
                         <div className="form-check form-check-inline">
-                            <input className="form-check-input" type="radio" value={true} id="bechday_negotiable" onChange={e=>setNegotiate(e.target.value)}/>
+                            <input className="form-check-input" name="negotiate" type="radio" value={true} id="bechday_negotiable" onChange={e=>setNegotiate(e.target.value)}/>
                             <label className="form-check-label" htmlFor="bechday_negotiable">
                                 Negotiable
                             </label>
@@ -106,19 +119,19 @@ export default function AddProduct(){
                             </label>
                         </div>
                         <div className="form-check form-check-inline">
-                            <input className="form-check-input" type="radio" value="Like New" onChange={e=>setCondition(e.target.value)} id="bechday_likenew"/>
+                            <input className="form-check-input" name="condition" type="radio" value="Like New" onChange={e=>setCondition(e.target.value)} id="bechday_likenew"/>
                             <label className="form-check-label" htmlFor="bechday_likenew">
                                 Like New
                             </label>
                         </div>
                         <div className="form-check form-check-inline">
-                            <input className="form-check-input" type="radio" value="Good" onChange={e=>setCondition(e.target.value)} id="bechday_good"/>
+                            <input className="form-check-input" name="condition" type="radio" value="Good" onChange={e=>setCondition(e.target.value)} id="bechday_good"/>
                             <label className="form-check-label" htmlFor="bechday_good">
                                 Good
                             </label>
                         </div>
                         <div className="form-check form-check-inline">
-                            <input className="form-check-input" type="radio" value="Not Working" onChange={e=>setCondition(e.target.value)} id="bechday_notworking"/>
+                            <input className="form-check-input" name="condition" type="radio" value="Not Working" onChange={e=>setCondition(e.target.value)} id="bechday_notworking"/>
                             <label className="form-check-label" htmlFor="bechday_notworking">
                                 Not Working
                             </label>
@@ -128,6 +141,20 @@ export default function AddProduct(){
                         <label className="form-label">Used for</label>
                         <input className="form-control" name="usedFor" placeholder="Eg. Months" onChange={e=>setUsedFor(e.target.value)}></input>
                     </div>
+                    {
+                        loc && loc.cities && <div className="bd-addform__inputgroup mb-4">
+                            <label className="form-label">Location</label>
+                                 <select className="form-control" name="location" defaultValue={'DEFAULT'} onChange={e=>setLocation(e.target.value)}>
+                                    <option key="0_cities" value="DEFAULT">Select area of you city</option>
+                                    {
+                                        loc.cities.map((g,i)=>{
+                                            return <option key={i+"_cities"} value={g}>{g}</option>
+                                        })
+                                    }
+                                </select>
+                                
+                        </div>
+                    }
                     <div className="bd-addform__inputgroup mb-4">
                         <label className="form-label">Category</label>
                         <select className="form-control" name="category" defaultValue={'DEFAULT'} onChange={e=>setCategory(e.target.value)}>
@@ -167,6 +194,7 @@ export default function AddProduct(){
                                 
                         </div>
                     }
+                    
                     <div className="bd-addform__inputgroup mb-4">
                         <label className="form-label">Upload image</label>
                         <input multiple type="file" className="from-control" name="uploadedImages" onChange={onImageuploadChange}/>
@@ -182,12 +210,6 @@ export default function AddProduct(){
                     </div>
                     <button type="submit" className="btn btn-primary">Post Ad</button>
                 </form>
-
-                {/* <form action="/api/products/test" encType="multipart/form-data" method="POST">
-                    <input type='text' name='valrik'></input>
-                    <input type="file" name="uploadedImages" multiple onChange={onImageuploadChange}/>
-                    <input type="submit" value="uploading_img"/>
-                </form> */}
             </div>
         </React.Fragment>
     )

@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 export default function Banner(){
     return(
         <React.Fragment>
-            <div className="bd-banner">
+            <div className="bd-banner container-xl">
                 <img className="bd-banner__img" src={banner} alt="banner"></img>
                 <div className="bd-banner__slogan-wrapper">
                     <h1 className="bd-banner__h1">Selling here is the easy way to make extra money</h1>

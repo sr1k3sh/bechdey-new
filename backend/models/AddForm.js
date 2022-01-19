@@ -43,6 +43,10 @@ const addFormSchema = new Schema({
         type:String,
         required:true
     },
+    location:{
+        type:String,
+        required:true
+    },
     img:
     {
         data: Buffer,

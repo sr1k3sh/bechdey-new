@@ -5,10 +5,18 @@ module.exports = function validatePostForm(data) {
     let errors = {};
 
     // Convert empty fields to an empty string so we can use validator function
-    data.password = !isEmpty(data.password) ? data.password : "";
+   
     data.userId = !isEmpty(data.userId) ? data.userId : "";
-    data.userName = !isEmpty(data.userName) ? data.userName : "";
-
+    data.title = !isEmpty(data.title) ? data.title : "";
+    data.description = !isEmpty(data.description) ? data.description : "";
+    data.price = !isEmpty(data.price) ? data.price : "";
+    data.title = !isEmpty(data.title) ? data.title : "";
+    data.condition = !isEmpty(data.condition) ? data.condition : "";
+    data.usedFor = !isEmpty(data.usedFor) ? data.usedFor : "";
+    data.category = !isEmpty(data.category) ? data.category : "";
+    data.subcategory = !isEmpty(data.subcategory) ? data.subcategory : "";
+    data.maincategory = !isEmpty(data.maincategory) ? data.maincategory : "";
+    data.location = !isEmpty(data.location) ? data.location : "";
     if(Validator.isEmpty(data.userId)){
         errors.userId = "Empty UserData"
     }
@@ -48,6 +56,10 @@ module.exports = function validatePostForm(data) {
 
     if(Validator.isEmpty(data.maincategory)){
         errors.maincategory = "Please select a maincategory"
+    }
+
+    if(Validator.isEmpty(data.location)){
+        errors.location = "Please select a location"
     }
     return {
         errors,

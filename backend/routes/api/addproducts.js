@@ -18,70 +18,50 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-router.post('/addpost',upload.array('uploadedImages', 10),async(req,res)=>{
+router.post('/addpost',upload.array('file', 10),async(req,res)=>{
   const { errors, isValid } = validatePostForm(JSON.parse(JSON.stringify(req.body)));
-
   if(!isValid){
     return res.status(400).json(errors);
   }
+  
   await AddForm.findOne({title:req.body.title}).then(t =>{
     if (t) {
       return res.status(400).json({ title: "url already exists" });
     } else {
-        const newData = new AddForm({
-          userId: req.body.userId,
-          title: req.body.title,
-          description: req.body.description,
-          price: req.body.price,
-          negotiate: req.body.negotiate,
-          condition: req.body.condition,
-          usedFor: req.body.usedFor,
-          name:req.files.map(f=>f.originalname),
-          category:req.body.category,
-          subcategory:req.body.subcategory,
-          maincategory:req.body.maincategory
-        });
-
+      const newData = new AddForm({
+        userId: req.body.userId,
+        title: req.body.title,
+        description: req.body.description,
+        price: req.body.price,
+        negotiate: req.body.negotiate,
+        condition: req.body.condition,
+        usedFor: req.body.usedFor,
+        name:req.files.map(f=>f.originalname),
+        category:req.body.category,
+        subcategory:req.body.subcategory,
+        maincategory:req.body.maincategory,
+        location:req.body.location
+      });
+      
         newData
           .save()
-          .then(data => res.json(data))
+          .then(data => res.status(200).json({ message: "update data" }))
           .catch(err => console.log(err));
     }
   });
 });
-// var test = multer();
 
-router.post('/test',upload.array('uploadedImages',10),async(req,res)=>{
-  const { errors, isValid } = validatePostForm(JSON.parse(JSON.stringify(req.body)));
-  console.log(isValid)
-  res.end();
-  // if(!isValid){
-  //   return res.status(400).json(errors);
-  // }
-  // await AddForm.findOne({title:req.body.title}).then(t =>{
-  //   if (t) {
-  //     return res.status(400).json({ title: "url already exists" });
-  //   } else {
-  //       const newData = new AddForm({
-  //         userId: req.body.userId,
-  //         title: req.body.title,
-  //         description: req.body.description,
-  //         price: req.body.price,
-  //         negotiate: req.body.negotiate,
-  //         condition: req.body.condition,
-  //         usedFor: req.body.usedFor,
-  //         name:req.files,
-  //         category:req.body.category,
-  //         subcategory:req.body.subcategory,
-  //         maincategory:req.body.maincategory
-  //       });
 
-  //       newData
-  //         .save()
-  //         .then(data => res.json(data))
-  //         .catch(err => console.log(err));
-  //   }
-  // });
+router.post('/get/ad', function (req, res) {
+  // console.log(AddForm)
+  AddForm.find({}, function(err, posts){
+      if(err){
+          console.log(err);
+      }
+      else {
+          res.json(posts);
+      }
+  });
 });
 
 module.exports = router;

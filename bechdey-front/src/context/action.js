@@ -43,3 +43,22 @@ export async function logout(dispatch) {
 	localStorage.removeItem('currentUser');
 	localStorage.removeItem('token');
 }
+
+
+export async function fetchAds(dispatch, page) {
+    try {
+		dispatch({ type: 'DATA_LOADING' });
+        let response = await axios({
+            method: "post",
+            url: '/api/products/get/ad',
+            data:page,
+            headers: { "Content-Type": "multipart/form-data" },
+        }).then(res=>{
+            const {data} = res;
+            dispatch({type:'DATA_LOADED',payload:data});
+        });
+		return response;
+	} catch (error) {
+		dispatch({ type: 'DATA_ERROR', error: error });
+	}
+}

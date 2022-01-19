@@ -9,3 +9,7 @@ export const category = {
         "Parts & accecorise":["helmet","parts","Riding gear","Tyre","accesories"]
     }
 }
+
+export const location = {
+    cities:["Kathmandu","Pokhara","Jitpur","Birāṭnagar","Birāṭnagar","Birgunj","Butwal","Dharan","Dhangadi","Janakpur","Hetauda","Bhaktapur","Itahari","Nepalgunj","Kritipur","Bairahawa","Tikapur","Gulariya","Tulsipur","Birendranagar","Hanumannagar","Palpa","Siraha","Panauti","Bidur","Godawari"]
+}
