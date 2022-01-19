@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import { loginUser } from '../context/action';
 import { useAuthDispatch, useAuthState } from '../context';
+import form2 from './../assets/svgs/form2.svg';
 export default function Login(props){
 
     const dispatch = useAuthDispatch();
@@ -39,18 +40,25 @@ export default function Login(props){
 
     return(
         <React.Fragment>
-            <div className='login container-xl-12'>
-                <form className='login-form' onSubmit={onLogin}>
-                    <div>
-                        <label className='form-label'>Email</label>
-                        <input className='form-control' name="email" type="text" onChange={e=>setEmail(e.target.value)}></input>
+            <div className='bd-auth  container-xl'>
+                <div className='row mt-3'>
+                    <form className='bd-auth__form col-xl-5' onSubmit={onLogin}>
+                        <div className="col-xl-12 mb-4">
+                            <label className='form-label'>Email</label>
+                            <input className='form-control' name="email" type="text" onChange={e=>setEmail(e.target.value)}></input>
+                        </div>
+                        <div className="col-xl-12 mb-4">
+                            <label className='form-label'>Password</label>
+                            <input className='form-control' name="password" type='password' onChange={e=>setPassword(e.target.value)}></input>
+                        </div>
+                        <div className="col-xl-12 mb-4">
+                            <button type='submit' className='btn btn-outline-primary w-100'>login</button>
+                        </div>
+                    </form>
+                    <div className="col-xl-7">
+                        <img className="bd-auth__img" src={form2}></img>
                     </div>
-                    <div>
-                        <label className='form-label'>Password</label>
-                        <input className='form-control' name="password" type='password' onChange={e=>setPassword(e.target.value)}></input>
-                    </div>
-                    <button type='submit' className='btn btn-primary'>login</button>
-                </form>
+                </div>
             </div>
         </React.Fragment>
     )

@@ -21,6 +21,7 @@ export const initialState = {
 export const initialDataState = {
 	dataLoading:true,
 	data:null,
+	dataCount:null,
 	dataError:null,
 }
 
@@ -35,7 +36,8 @@ export const dataReducer = (initialDataState, action) => {
 			return {
 				...initialDataState,
 				dataLoading:false,
-				data:action.payload
+				data:action.payload.data,
+				dataCount:action.payload.paginator
 			}
 		case "DATA_ERROR":
 			return{
@@ -84,3 +86,37 @@ export const AuthReducer = (initialState, action) => {
 			throw new Error(`Unhandled action type: ${action.type}`);
 	}
 };
+
+export const initRegisterState = {
+	loading:true,
+	data:null,
+	error:null,
+}
+export const RegisterReducer = (initRegisterState, action) =>{
+	switch (action.type) {
+		case 'REQUEST_REGISTER':
+			return {
+				...initRegisterState,
+				loading: true,
+			};
+		case 'REGISTER_SUCCESS':
+            {   
+                return {
+                    ...initRegisterState,
+					loading:false,
+                    data:action.payload,
+					error:null
+                };
+            }
+		case 'REGISTER_ERROR':
+			return {
+				...initRegisterState,
+				loading: false,
+				data:null,
+				errorMessage: action.error,
+			};
+
+		default:
+			throw new Error(`Unhandled action type: ${action.type}`);
+	}
+}

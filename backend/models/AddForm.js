@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-
+const mongoosePaginate = require("mongoose-paginate-v2");
 // create schema
 const addFormSchema = new Schema({
     userId:{
@@ -62,4 +62,8 @@ const addFormSchema = new Schema({
     },
 
 });
-module.exports = User = mongoose.model("addform", addFormSchema);
+
+
+addFormSchema.plugin(mongoosePaginate);
+
+module.exports = AddForm = mongoose.model("addform", addFormSchema);

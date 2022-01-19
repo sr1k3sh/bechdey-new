@@ -2,9 +2,11 @@ const express = require("express");
 const router = express.Router();
 
 const validatePostForm = require("../../validation/postProduct");
+
 // Load User model
 
 const AddForm = require("../../models/AddForm");
+
 
 const multer = require("multer");
 
@@ -53,15 +55,33 @@ router.post('/addpost',upload.array('file', 10),async(req,res)=>{
 
 
 router.post('/get/ad', function (req, res) {
-  // console.log(AddForm)
-  AddForm.find({}, function(err, posts){
-      if(err){
-          console.log(err);
-      }
-      else {
-          res.json(posts);
-      }
-  });
+  
+  // AddForm.find()
+  //   .skip( req.query.page > 0 ? ( ( req.query.page - 1 ) * req.query.limit ) : 0 )  
+  //   .sort({createdAt: -1}).limit(parseInt(req.query.limit)).exec(function(err, posts){
+  //     if(err){
+  //         console.log(err);
+  //     }
+  //     else {
+  //       res.json(posts);
+  //     }
+  // });
+  const myCustomLabels = {
+    totalDocs: 'count',
+    docs: 'data',
+    limit: 'pageSize',
+    page: 'currentPage',
+    nextPage: 'next',
+    prevPage: 'prev',
+    totalPages: 'totalPages',
+    pagingCounter: 'slNo',
+    meta: 'paginator'
+  };
+  AddForm.paginate({}, {customLabels: myCustomLabels, page: req.query.page, limit: req.query.limit ,sort: { createdAt: -1 }})
+  .then(result => {
+    res.json(result)
+  })
+
 });
 
 module.exports = router;

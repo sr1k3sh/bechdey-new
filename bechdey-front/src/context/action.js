@@ -51,12 +51,15 @@ export async function fetchAds(dispatch, page) {
         let response = await axios({
             method: "post",
             url: '/api/products/get/ad',
+            params:page,
             data:page,
-            headers: { "Content-Type": "multipart/form-data" },
+            headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
         }).then(res=>{
             const {data} = res;
             dispatch({type:'DATA_LOADED',payload:data});
+            return data;
         });
+
 		return response;
 	} catch (error) {
 		dispatch({ type: 'DATA_ERROR', error: error });

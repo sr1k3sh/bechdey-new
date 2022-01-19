@@ -1,13 +1,5 @@
-.bd-product-wrapper{
-    display: flex;
-    flex-direction: row;
-    gap:1rem;
-    width: 100%;
-    overflow: auto;
-}
 .bd-product-card{
-    min-width: 350px;
-    max-width: 375px;
+    width: 375px;
     border:1px solid #eeee;
     border-radius: 16px;
 
@@ -30,10 +22,21 @@
         padding: 1rem;
     }
 
+    &__price-wrapper{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
     &__price{
         font-size: 20px;
         font-weight: bold;
-        margin-bottom: 1rem;
+    }
+
+    &__like{
+        padding: 0;
     }
 
     &__title{
