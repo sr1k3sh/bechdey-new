@@ -5,6 +5,7 @@ import AppRoutes from './components/AppRoute';
 import { AuthProvider } from './context/Context';
 import Navbar from './components/Navbar';
 import './../node_modules/bootstrap/js/src/dropdown';
+import './../node_modules/bootstrap/js/src/collapse';
 function App() {
   return (
     <AuthProvider>

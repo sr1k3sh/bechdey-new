@@ -25,14 +25,11 @@ export default function AddProduct(){
     const [mainCategory, setMainCategory] = useState();
     const [getLocation, setLocation] = useState();
 
-
     useEffect(()=>{
     },[])
 
     const onSubmitPost = async(e) =>{
         e.preventDefault();
-
-        console.log(e);
         const formData = new FormData();
         formData.append('userId',userDetails.userId);
         formData.append('title',title);
@@ -160,20 +157,20 @@ export default function AddProduct(){
                         <select className="form-control" name="category" defaultValue={'DEFAULT'} onChange={e=>setCategory(e.target.value)}>
                             <option value="DEFAULT">Select category</option>
                             {
-                                Object.keys(cat).map((g,i)=>{
-                                    return <option key={i+"_main"} value={g}>{g}</option>
+                                cat.map((g,i)=>{
+                                    return <option key={i+"_main"} value={g.value}>{g.label}</option>
                                 })
                             }
                         </select>
                     </div>
                     {
-                        Category && cat[Category] && <div className="bd-addform__inputgroup mb-4">
+                        Category && <div className="bd-addform__inputgroup mb-4">
                             <label className="form-label">Sub category</label>
                                  <select className="form-control" name="subcategory" defaultValue={'DEFAULT'} onChange={e=>setSubCategory(e.target.value)}>
                                     <option key="0_sub-main" value="DEFAULT">Select sub category</option>
                                     {
-                                        Object.keys(cat[Category]).map((g,i)=>{
-                                            return <option key={i+"_sub-main"} value={g}>{g}</option>
+                                        cat.filter(c=>c.value === Category)[0].children.map((g,i)=>{
+                                            return <option key={i+"_sub-main"} value={g.value}>{g.label}</option>
                                         })
                                     }
                                 </select>
@@ -181,13 +178,13 @@ export default function AddProduct(){
                         </div>
                     }
                     {
-                        subCategory && cat[Category][subCategory] && <div className="bd-addform__inputgroup mb-4">
+                        Category && subCategory && <div className="bd-addform__inputgroup mb-4">
                             <label className="form-label">Sub category</label>
                                  <select className="form-control" name="maincategory" defaultValue={'DEFAULT'} onChange={e=>setMainCategory(e.target.value)}>
                                     <option key="0_sub-main-value" value="DEFAULT">Select sub category</option>
                                     {
-                                        cat[Category][subCategory].map((g,i)=>{
-                                            return <option key={i+"_sub-main-value"} value={g}>{g}</option>
+                                        cat.filter(c=>c.value === Category)[0].children.filter(ch=>ch.value === subCategory)[0].children.map((g,i)=>{
+                                            return <option key={i+"_sub-main-value"} value={g.value}>{g.label}</option>
                                         })
                                     }
                                 </select>
