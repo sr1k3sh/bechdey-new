@@ -1,0 +1,22 @@
+.bd-filter{
+    &__list{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1rem;
+        padding: 0;
+        list-style: none;
+        margin-bottom:1rem;
+    }
+    &__item{
+        display: flex;
+        align-items: center;
+    }
+    &__span{
+        background: #9852b5c9;
+        padding: 4px 12px;
+        border-radius: 1rem;
+        color: #ffffff;
+        font-size: 14px;
+    }
+}

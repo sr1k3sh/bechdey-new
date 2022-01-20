@@ -13,92 +13,115 @@ export const category = [
     {
         value:"mobile_phone_and_accesories",
         label:"Mobile Phone & Accessories",
+        type:"category",
         children:[
             {
                 value:"mobile_phone",
                 label:"Mobile phone",
+                type:"subcategory",
                 children:[
                     {
+                        type:"maincategory",
                         value:"Apple",
                         label:"Apple",
                     },
                     {
+                        type:"maincategory",
                         value:"Asus",
                         label:"Asus",
                     },
                     {
+                        type:"maincategory",
                         value:"Blackberry",
                         label:"Blackberry",
                     },
                     {
+                        type:"maincategory",
                         value:"Colors",
                         label:"Colors",
                     },
                     {
+                        type:"maincategory",
                         value:"Gionee",
                         label:"Gionee",
                     },
                     {
+                        type:"maincategory",
                         value:"Goolgle",
                         label:"Goolgle",
                     },
                     {
+                        type:"maincategory",
                         value:"HTC",
                         label:"HTC",
                     },
                     {
+                        type:"maincategory",
                         value:"Huwaei",
                         label:"Huwaei",
                     },
                     {
+                        type:"maincategory",
                         value:"Lava",
                         label:"Lava",
                     },
                     {
+                        type:"maincategory",
                         value:"Lenovo",
                         label:"Lenovo",
                     },
                     {
+                        type:"maincategory",
                         value:"LG",
                         label:"LG",
                     },
                     {
+                        type:"maincategory",
                         value:"MI",
                         label:"MI",
                     },
                     {
+                        type:"maincategory",
                         value:"Micromax",
                         label:"Micromax",
                     },
                     {
+                        type:"maincategory",
                         value:"Motorola",
                         label:"Motorola",
                     },
                     {
+                        type:"maincategory",
                         value:"Nokia",
                         label:"Nokia",
                     },
                     {
+                        type:"maincategory",
                         value:"Oneplus",
                         label:"Oneplus",
                     },
                     {
+                        type:"maincategory",
                         value:"Oppo",
                         label:"Oppo",
                     },
                     {
+                        type:"maincategory",
                         value:"Others",
                         label:"Others",
                     },
                     {
+                        type:"maincategory",
                         value:"Samsung",
                         label:"Samsung",
                     },
                     {
+                        type:"maincategory",
                         value:"Sony",
                         label:"Sony",
                     },
                     {
+                        type:"maincategory",
                         value:"Vivo",
                         label:"Vivo",
                     },
@@ -107,6 +130,7 @@ export const category = [
             {
                 value:"mobile_accesories",
                 label:"Accessories",
+                type:"subcategory",
                 children:[
                     {
                         value:"Battery",
@@ -157,11 +181,11 @@ export const category = [
         ]
     },
     {
-        value:"test3",
+        value:"automobiles",
         label:"Automobiles",
         children:[
             {
-                value:"test4",
+                value:"cars",
                 label:"Cars",
                 children:[
                     {
@@ -211,7 +235,7 @@ export const category = [
                 ]
             },
             {
-                value:"test5",
+                value:"bike",
                 label:"Bike",
                 children:[
                     {
@@ -258,7 +282,7 @@ export const category = [
                 ]
             },
             {
-                value:"test6",
+                value:"autoparts",
                 label:"Parts and Accessories",
                 children:[
                     {
@@ -286,6 +310,110 @@ export const category = [
         ]
     }
 ]
-export const location = {
-    cities:["Kathmandu","Pokhara","Jitpur","Birāṭnagar","Birāṭnagar","Birgunj","Butwal","Dharan","Dhangadi","Janakpur","Hetauda","Bhaktapur","Itahari","Nepalgunj","Kritipur","Bairahawa","Tikapur","Gulariya","Tulsipur","Birendranagar","Hanumannagar","Palpa","Siraha","Panauti","Bidur","Godawari"]
-}
+export const location = [{
+    value:'cities',
+    label:"Location",
+    children:[
+        {
+            value:"Kathmandu",
+            label:"Kathmandu",
+        },
+        {
+            value:"Pokhara",
+            label:"Pokhara",
+        },
+        {
+            value:"Jitpur",
+            label:"Jitpur",
+        },
+        {
+            value:"Birāṭnagar",
+            label:"Birāṭnagar",
+        },
+        {
+            value:"Birgunj",
+            label:"Birgunj",
+        },
+        {
+            value:"Butwal",
+            label:"Butwal",
+        },
+        {
+            value:"Dharan",
+            label:"Dharan",
+        },
+        {
+            value:"Dhangadi",
+            label:"Dhangadi",
+        },
+        {
+            value:"Janakpur",
+            label:"Janakpur",
+        },
+        {
+            value:"Hetauda",
+            label:"Hetauda",
+        },
+        {
+            value:"Bhaktapur",
+            label:"Bhaktapur",
+        },
+        {
+            value:"Itahari",
+            label:"Itahari",
+        },
+        {
+            value:"Nepalgunj",
+            label:"Nepalgunj",
+        },
+        {
+            value:"Kritipur",
+            label:"Kritipur",
+        },
+        {
+            value:"Bairahawa",
+            label:"Bairahawa",
+        },
+        {
+            value:"Tikapur",
+            label:"Tikapur",
+        },
+        {
+            value:"Gulariya",
+            label:"Gulariya",
+        },
+        {
+            value:"Tulsipur",
+            label:"Tulsipur",
+        },
+        {
+            value:"Birendranagar",
+            label:"Birendranagar",
+        },
+        {
+            value:"Hanumannagar",
+            label:"Hanumannagar",
+        },
+        {
+            value:"Palpa",
+            label:"Palpa",
+        },
+        {
+            value:"Siraha",
+            label:"Siraha",
+        },
+        {
+            value:"Panauti",
+            label:"Panauti",
+        },
+        {
+            value:"Bidur",
+            label:"Bidur",
+        },
+        {
+            value:"Godawari",
+            label:"Godawari",
+        },
+
+    ]
+}]

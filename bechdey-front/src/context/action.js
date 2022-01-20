@@ -67,3 +67,25 @@ export async function fetchAds(dispatch, page) {
 		dispatch({ type: 'DATA_ERROR', error: error });
 	}
 }
+
+
+export async function fetchFilterAds(dispatch, data) {
+    try {
+		dispatch({ type: 'DATA_LOADING' });
+        let response = await axios({
+            method: "post",
+            url: '/api/products/filter/ad',
+            params:data,
+            data:data,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+        }).then(res=>{
+            const {data} = res;
+            dispatch({type:'DATA_LOADED',payload:data});
+            return data;
+        });
+
+		return response;
+	} catch (error) {
+		dispatch({ type: 'DATA_ERROR', error: error });
+	}
+}
