@@ -2,7 +2,7 @@ import React ,{useState, useReducer}from "react";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 import { initRegisterState, RegisterReducer } from "../context/reducer";
-import form2 from './../assets/svgs/form2.svg';
+import form2 from './../assets/svgs/form3.svg';
 export default function Register(){
 
     const [username, setusername] = useState();
@@ -45,6 +45,9 @@ export default function Register(){
         <React.Fragment>
             <div className='bd-auth container-xl'>
                 <div className="row mt-3">
+                    <div className="col-xl-7">
+                        <img className="bd-auth__img" src={form2} alt="register form"></img>
+                    </div>
                     <form className='bd-auth__form col-xl-5' onSubmit={onRegister}>
                         <div className="col-xl-12 mb-4">
                             <label className='form-label'>Username</label>
@@ -91,9 +94,7 @@ export default function Register(){
                             <Link to="/login">Login from here</Link>
                         </div>
                     </form>
-                    <div className="col-xl-7">
-                        <img className="bd-auth__img" src={form2} alt="register form"></img>
-                    </div>
+                    
                 </div>
             </div>
         </React.Fragment>
