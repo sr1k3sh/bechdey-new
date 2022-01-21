@@ -19,6 +19,7 @@ export default function RecentlyProducts(){
     const [locexpanded,setLocExpanded] = useState();
 
     const data = {
+        page:1,limit:6
     }
 
     const options = {
@@ -35,7 +36,7 @@ export default function RecentlyProducts(){
     }
     useEffect(()=>{
         try{
-            fetchAds(dispatch,{page:1,limit:4})
+            fetchAds(dispatch,data)
         }catch(err){
             console.log(err);
         }
@@ -43,7 +44,11 @@ export default function RecentlyProducts(){
 
     const handleClick = (e) =>{
         e.preventDefault();
-        fetchAds(dispatch,{page:e.target.id,limit:4})
+        data.page = e.target.id;
+        catchecked && (data.maincategory = catchecked);
+        locchecked && (data.location = locchecked);
+        console.log(data);
+        fetchFilterAds(dispatch,data);
     }
 
     const ShowPaginationNumbers = (pageNumbers) => {
@@ -55,17 +60,17 @@ export default function RecentlyProducts(){
             let endPage;
             let startPage;
 
-            if (pageNumbers <= showMax) {
+            if (pageNumbers < showMax) {
                 startPage = 1;
-                endPage = pageNumbers.length;
+                endPage = pageNumbers;
             }
             else {
                 startPage = dataCount?.currentPage;
-                if (startPage !== pageNumbers.length && (startPage + 1) !== pageNumbers.length) {
+                if (startPage !== pageNumbers && (startPage + 1) !== pageNumbers) {
                     endPage = dataCount?.currentPage + showMax - 1;
                 }
                 else {
-                    endPage = pageNumbers.length;
+                    endPage = pageNumbers;
                 }
                 endPage>pageNumbers && (endPage = pageNumbers) && (startPage = pageNumbers - showMax);
 
@@ -95,16 +100,17 @@ export default function RecentlyProducts(){
     const onCheckedCategory = (checked) =>{
         setCatChecked(checked);
         data.maincategory = checked;
+        locchecked && (data.location = locchecked);
         fetchFilterAds(dispatch, data);
     }
 
     const onCheckedLocation = (checked) =>{
         setLocChecked(checked);
         data.location = checked;
+        catchecked && (data.maincategory = catchecked);
         fetchFilterAds(dispatch, data);
     }
 
-    console.log(locchecked,catchecked)
     return(
         <React.Fragment>
             <div className="container-xl">
@@ -171,19 +177,19 @@ export default function RecentlyProducts(){
                             </div>
                         </div>
                     </aside>
-                    <div className="col-xl-8 offset-xl-1">
+                    <div className="col-xl-9">
                         <div className="col-xl-12">
                             {
                                 catchecked && <ul className="bd-filter__list">
                                     {
-                                        catchecked && catchecked.map(c=><li className="bd-filter__item"><span className="bd-filter__span">{c}</span></li>)
+                                        catchecked && catchecked.map((c,i)=><li className="bd-filter__item" key={i}><span className="bd-filter__span">{c}</span></li>)
                                     }
                                 </ul>
                             }
                             {
                                 locchecked && <ul className="bd-filter__list">
                                     {
-                                        locchecked && locchecked.map(c=><li className="bd-filter__item"><span className="bd-filter__span">{c}</span></li>)
+                                        locchecked && locchecked.map((c,i)=><li className="bd-filter__item" key={i}><span className="bd-filter__span">{c}</span></li>)
                                     }
                                 </ul>
                             }

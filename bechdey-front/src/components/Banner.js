@@ -15,8 +15,10 @@ export default function Banner(){
                 <div className="bd-banner__slogan-wrapper">
                     <h1 className="bd-banner__h1">Selling here is the easy way to make extra money</h1>
                     <div className="bd-banner__buttons">
-                        <button className="btn btn-outline-light" onClick={onRegisterButtonClick}>Register now</button>
-                        <Link className="link-light" to="/home">learn more</Link>
+                        <button className="btn btn-lg btn-outline-light" onClick={onRegisterButtonClick}>Register now</button>
+                        <Link className="bd-banner__link link-light" to="/home">learn more
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"/></svg>
+                        </Link>
                     </div>
                 </div>
             </div>

@@ -16,9 +16,16 @@
     &__img{
         position: absolute;
         width: 100%;
-        height: 25rem;
+        height: 100%;
         object-fit: cover;
-        
+    }
+
+    &__link{
+        font-size: 1.25rem;
+        font-weight: 500;
+        & svg{
+            fill:$white;
+        }
     }
 
     &__slogan-wrapper{
@@ -33,9 +40,10 @@
     }
 
     &__h1{
-        max-width: 40rem;
+        max-width: 45rem;
         color: $white;
         font-weight: 200;
+        font-size: 4.5rem;
     }
 
     &__buttons{

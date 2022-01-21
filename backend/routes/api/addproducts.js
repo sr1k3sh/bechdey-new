@@ -75,7 +75,7 @@ router.post('/get/ad', function (req, res) {
 
 
 router.post('/filter/ad',function(req,res){
-  AddForm.paginate( req.query, {customLabels: myCustomLabels, page: 1, limit: 4 ,sort: { createdAt: -1 }}).then(result => {
+  AddForm.paginate( req.query, {customLabels: myCustomLabels, page: req.query.page, limit: req.query.limit ,sort: { createdAt: -1 }}).then(result => {
       res.json(result)
     });
 })
