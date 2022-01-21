@@ -23,16 +23,6 @@ const routes = [
         isPrivate:true
     },
     {
-        path:"/home",
-        component:Mainpage,
-        isPrivate:false
-    },
-    {
-        path:"/",
-        component:Mainpage,
-        isPrivate:false
-    },
-    {
         path:"/addproduct",
         component:AddProduct,
         isPrivate:true
@@ -43,10 +33,20 @@ const routes = [
         isPrivate:false
     },
     {
+        path:"/",
+        component:Mainpage,
+        isPrivate:false
+    },
+    {
         path:"/*",
         component:NotFound,
         isPrivate:false
     }
+    // {
+    //     path:"/",
+    //     component:Mainpage,
+    //     isPrivate:false
+    // },
 ]
 
 export default routes;

@@ -55,7 +55,7 @@ export default function AddProduct(){
                 }
             ).then(res=>{
                 console.log(res);
-                history.push('/home')
+                history.push('/')
             });
         }catch(err){
             console.log(err);

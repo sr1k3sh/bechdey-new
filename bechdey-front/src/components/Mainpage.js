@@ -26,7 +26,7 @@ export default function Mainpage(){
                 { state.dataLoading ? 
                     <h2>loading</h2> : <div className="bd-product-wrapper">
                         {
-                            state.data.map((s,i)=>
+                            state.data && state.data.map((s,i)=>
                                 <ProductCard data={s} key={i}></ProductCard>
                             )
                         }
