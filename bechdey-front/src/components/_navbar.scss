@@ -38,6 +38,7 @@
         align-items: center;
         margin-top: 1rem;
         float: right;
+        gap: 0.5rem;
         @include media-breakpoint-up(lg){
             margin-top: 0;
         }
@@ -56,6 +57,19 @@
         margin-top: 1rem;
         @include media-breakpoint-up(lg){
             margin-top: 0;
+        }
+    }
+
+    &__avatar{
+        background: $primary;
+        color: $white;
+        border-radius: 50%;
+        font-weight: 500;
+    }
+
+    &__dropdown-logout{
+        & svg{
+            margin-right: 1rem;
         }
     }
 }
