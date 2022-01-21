@@ -1,0 +1,15 @@
+.bd-input{
+    &__search{
+        border-radius: 1rem;
+        background: transparent;
+        border-right-color:transparent ;
+        padding-right: 0;
+    }
+
+    &__text{
+        border-radius: 1rem;
+        background: transparent;
+        border-left-color: transparent;
+
+    }
+}

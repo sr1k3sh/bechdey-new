@@ -1,30 +1,43 @@
 import React from "react";
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import { logout, useAuthDispatch, useAuthState } from "../context";
+import InputSearch from "./inputs/InputSearch";
 export default function Navbar(){
 
     const userDetails = useAuthState();
     const dispatch = useAuthDispatch();
+    const history = useHistory();
 
     const onLogout = (e) =>{
         e.preventDefault();
         logout(dispatch);
     }
+
+    const onLoginClick=(e)=>{
+        e.preventDefault();
+        history.push("/login");
+    }
+
+    const onRegisterClick = (e) =>{
+        e.preventDefault();
+        history.push("/register");
+    }
+
     return(
         <React.Fragment>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <div className="container-fluid">
+                <div className="container-xl">
                     <div className="col-12">
-                        <div className="navbar__topbar mb-3">
-                            <Link className="" to="/addproduct">Sell on Bechday</Link>
-                        </div>
-                        <div className="navbar__mainbar mb-3">
-                            <h2><Link className="navbar__icon" to="/home">Bechdey.</Link></h2>
-                            <div className="navbar__mainbar-right">
+                        <div className="navbar__mainbar">
+                            <div className="navbar__icon">
+                                <h2><Link className="navbar__icon" to="/home">Bechdey.</Link></h2>
+                            </div>
+                            <div className="navbar__search">
                                 <form className="d-flex">
-                                    <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                                    <button className="btn btn-outline-success" type="submit">Search</button>
+                                    <InputSearch></InputSearch>       
                                 </form>
+                            </div>
+                            <div className="navbar__mainbar-right">
                                 {
                                     userDetails.user ? 
                                     <div className="dropdown">
@@ -36,50 +49,14 @@ export default function Navbar(){
                                         </ul>
                                     </div>                               
                                     :
-                                    <Link to="/login">Login</Link>                                  
+                                    <React.Fragment>
+                                        <button className="btn btn-outline-secondary me-3" onClick={onLoginClick}>Login</button>
+                                        <button className="btn btn-secondary" onClick={onRegisterClick}>Register</button>                                  
+                                    </React.Fragment>
                                 }
                             </div>
                         </div>
-                        <div className="navbar__subbar">
-                            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                <span className="navbar-toggler-icon"></span>
-                            </button>
-                            <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                                    <li className="nav-item">
-                                        <Link className="nav-link active" to="/">Cars</Link>
-                                    </li>
-                                    <li className="nav-item">
-                                        <Link className="nav-link" to="/">Motorcycle</Link>
-                                    </li>
-                                    <li className="nav-item">
-                                        <Link className="nav-link" to="/">MobilePhones</Link>
-                                    </li>
-                                    <li className="nav-item">
-                                        <Link className="nav-link" to="/">Home & Apparments</Link>
-                                    </li>
-                                    <li className="nav-item">
-                                        <Link className="nav-link" to="/">Scooters</Link>
-                                    </li>
-                                    <li className="nav-item">
-                                        <Link className="nav-link" to="/">Clothes</Link>
-                                    </li>
-                                    <li className="nav-item">
-                                        <Link className="nav-link" to="/">Mobile Accessories</Link>
-                                    </li>
-                                </ul>
-                                <div className="dropdown">
-                                    <button className="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        All Categorise
-                                    </button>
-                                    <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-                                        {/* <li><a className="dropdown-item" href="#">Action</a></li>
-                                        <li><a className="dropdown-item" href="#">Another action</a></li>
-                                        <li><a className="dropdown-item" href="#">Something else here</a></li> */}
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </nav>

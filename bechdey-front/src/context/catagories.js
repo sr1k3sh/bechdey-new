@@ -1,14 +1,3 @@
-// export const category = {
-//     "Mobile Phone & Accessories" :{
-//         "Mobile phone":["Apple","Asus","Blackberry","Colors","Gionee","Goolgle","HTC","Huwaei","Lava","Lenovo","LG","MI","Micromax","Motorola","Nokia","Oneplus","Oppo","Others","Samsung","Sony","Vivo"],
-//         "Accessories":["Battery","Charger","Cover & Cases","Data cables","Gamepad & joystick","Headset & earphones","Memory Cards","Mobile apps & games","Mobile parts","Mobile unlock","Other accesories"]    
-//     },
-//     "Automobiles":{
-//         "Cars":["Chevrolet","Daihatsu","Datsun","Eicher","Fiat",'Ford',"Geely","Honda",'Hyundai',"Kia","Land Rover"],
-//         "Bike":["Aprilla","Bajaj","Benelli","Cfmoto","Cross X","Crossfire","Harford","Hero","Honda","Ktm"],
-//         "Parts & accecorise":["helmet","parts","Riding gear","Tyre","accesories"]
-//     }
-// }
 export const category = [
     {
         value:"mobile_phone_and_accesories",
@@ -306,6 +295,60 @@ export const category = [
                         label:"accesories",
                     }
                 ]
+            }
+        ]
+    },
+    {
+        value:"electronics",
+        label:"Electronic, Tv & more",
+        children:[
+            {
+                value:"camera",
+                label:"Camera"
+            },
+            {
+                value:"camera_accessories",
+                label:"Camera Accessories"
+            },
+            {
+                value:"drone",
+                label:"Drone & Quadcopter"
+            },
+            {
+                value:"headphone",
+                label:"Headphone & Earphone"
+            },
+            {
+                value:"home_theatre",
+                label:"Home theatre & Audio sytem"
+            },
+            {
+                value:"other",
+                label:"Other"
+            },
+            {
+                value:"bluetooth_speaker",
+                label:"Bluetooth Speaker"
+            },
+            {
+                value:"projectors",
+                label:"Projectors"
+            },
+            {
+                value:"smartbox",
+                label:"Setup box & Smartbox"
+            },
+            {
+                value:"television",
+                label:"Television"
+            },
+            {
+                value:"television_accessories",
+                label:"Television Accessories"
+            },
+            {
+                value:"video_player",
+                label:"Video player"
             }
         ]
     }

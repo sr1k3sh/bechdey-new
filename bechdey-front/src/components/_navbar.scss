@@ -1,4 +1,9 @@
 .navbar{
+    position: sticky;
+    top:0;
+    z-index: 1;
+    --bs-bg-opacity: 0.7;
+    backdrop-filter: blur(32px);
     &__topbar{
         display: flex;
         flex-direction: row;

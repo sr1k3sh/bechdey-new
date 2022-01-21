@@ -139,13 +139,13 @@ export default function AddProduct(){
                         <input className="form-control" name="usedFor" placeholder="Eg. Months" onChange={e=>setUsedFor(e.target.value)}></input>
                     </div>
                     {
-                        loc && loc.cities && <div className="bd-addform__inputgroup mb-4">
+                        loc[0].children && <div className="bd-addform__inputgroup mb-4">
                             <label className="form-label">Location</label>
                                  <select className="form-control" name="location" defaultValue={'DEFAULT'} onChange={e=>setLocation(e.target.value)}>
                                     <option key="0_cities" value="DEFAULT">Select area of you city</option>
                                     {
-                                        loc.cities.map((g,i)=>{
-                                            return <option key={i+"_cities"} value={g}>{g}</option>
+                                        loc[0].children.map((g,i)=>{
+                                            return <option key={i+"_cities"} value={g.value}>{g.label}</option>
                                         })
                                     }
                                 </select>
