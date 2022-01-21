@@ -4,6 +4,7 @@ import { fetchAds } from "../context/action";
 import { dataReducer,initialDataState } from "../context/reducer";
 import Banner from "./Banner";
 import ProductCard from "./ProductCard";
+import Title from "./Title";
 
 export default function Mainpage(){
 
@@ -20,8 +21,8 @@ export default function Mainpage(){
     return(
         <React.Fragment>
             <Banner></Banner>
-            <div className="col-xl-12">
-                <h2>Recently Added</h2>
+            <div className="container-xl mt-5">
+                <Title title="Recently added"></Title>
                 { state.dataLoading ? 
                     <h2>loading</h2> : <div className="bd-product-wrapper">
                         {

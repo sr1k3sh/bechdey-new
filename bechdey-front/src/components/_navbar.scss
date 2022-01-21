@@ -11,14 +11,17 @@
     }
     &__icon{
         font-weight: bold;
-        color: black;
+        color: $blue;
         text-decoration: none;
+        display: inline-block;
     }
     &__mainbar{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
+        @include media-breakpoint-up(lg){
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
     }
     &__subbar{
         display: flex;
@@ -33,6 +36,11 @@
         display: flex;
         flex-direction: row;
         align-items: center;
+        margin-top: 1rem;
+        float: right;
+        @include media-breakpoint-up(lg){
+            margin-top: 0;
+        }
     }
 
     & .navbar-nav{
@@ -41,5 +49,13 @@
     }
     .navbar-toggler{
         width: fit-content;
+        float: right;
+    }
+
+    .navbar-collapse{
+        margin-top: 1rem;
+        @include media-breakpoint-up(lg){
+            margin-top: 0;
+        }
     }
 }

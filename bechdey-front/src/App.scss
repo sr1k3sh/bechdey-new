@@ -10,17 +10,17 @@ $yellow:  #ffc107;
 $green:   #198754;
 $teal:    #20c997;
 $cyan:    #0dcaf0;
-$white:    #F7F7FF;
-$gray-100: #D0D4DD;
-$gray-200: #B8BECC;
+$white:    #ffffff;
+$gray-100: #f0f2f7;
+$gray-200: #d5dae4;
 $gray-300: #A0A8BA;
 $gray-400: #8992A9;
 $gray-500: #7D88A1;
 $gray-600: #717D98;
 $gray-700: #67738E;
 $gray-800: #5E6982;
-$gray-900: #545E75;
-$black:    #F0BCD4;
+$gray-900: #0B2545;
+$black:    #134074;
 @import './../node_modules/bootstrap/scss/bootstrap.scss';
 
 :root{

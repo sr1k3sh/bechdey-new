@@ -44,7 +44,7 @@ export default function Login(props){
             <div className='bd-auth  container-xl'>
                 <div className='row mt-3'>
                     <form className='bd-auth__form col-xl-5' onSubmit={onLogin}>
-                        <h2 className='mb-5'>Please login in to you account</h2>
+                        <h2 className='mb-5'>Login to you <strong className='text-primary'>Account</strong></h2>
                         <div className="col-xl-12 mb-4">
                             <label className='form-label'>Email</label>
                             <input className={errorMessage?.email?"form-control is-invalid":"form-control"} name="email" type="text" onChange={e=>setEmail(e.target.value)}></input>
