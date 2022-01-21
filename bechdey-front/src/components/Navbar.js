@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {Link, useHistory} from 'react-router-dom';
 import { logout, useAuthDispatch, useAuthState } from "../context";
 import InputSearch from "./inputs/InputSearch";
@@ -27,6 +27,7 @@ export default function Navbar(){
         e.preventDefault();
         history.push("/users");
     }
+    
     return(
         <React.Fragment>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">

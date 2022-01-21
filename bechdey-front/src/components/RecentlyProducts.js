@@ -36,7 +36,7 @@ export default function RecentlyProducts(){
     }
     useEffect(()=>{
         try{
-            fetchAds(dispatch,data)
+            fetchAds(dispatch,{page:1,limit:6})
         }catch(err){
             console.log(err);
         }
@@ -47,7 +47,6 @@ export default function RecentlyProducts(){
         data.page = e.target.id;
         catchecked && (data.maincategory = catchecked);
         locchecked && (data.location = locchecked);
-        console.log(data);
         fetchFilterAds(dispatch,data);
     }
 

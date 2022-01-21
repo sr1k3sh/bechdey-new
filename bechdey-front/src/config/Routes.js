@@ -28,6 +28,11 @@ const routes = [
         isPrivate:false
     },
     {
+        path:"/",
+        component:Mainpage,
+        isPrivate:false
+    },
+    {
         path:"/addproduct",
         component:AddProduct,
         isPrivate:true
