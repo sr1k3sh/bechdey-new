@@ -30,7 +30,7 @@ export default function Navbar(){
 
     return(
         <React.Fragment>
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar navbar-expand-lg navbar-light">
                 <div className="container-xl">
                     <div className="col-12">
                         <div className="navbar__mainbar">
