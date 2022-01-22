@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import { loginUser } from '../context/action';
 import { useAuthDispatch, useAuthState } from '../context';
-import form2 from './../assets/svgs/form2.svg';
 export default function Login(props){
 
     const dispatch = useAuthDispatch();
@@ -16,7 +15,7 @@ export default function Login(props){
     useEffect(() => {
 
         if(userDetails.user){
-            history.push('/users');
+            history.push('/');
         }
         return () => {
         
@@ -33,7 +32,7 @@ export default function Login(props){
 
             // if (!response.name) return;
 
-			history.push('/users');
+			history.push('/');
 		} catch (error) {
 			console.log(error);
 		}
@@ -41,7 +40,7 @@ export default function Login(props){
 
     return(
         <React.Fragment>
-            <div className='bd-auth  container-xl'>
+            <div className='bd-auth container-xl'>
                 <div className='row mt-3'>
                     <form className='bd-auth__form col-xl-5' onSubmit={onLogin}>
                         <h2 className='mb-5'>Login to you <strong className='text-primary'>Account</strong></h2>
@@ -71,9 +70,6 @@ export default function Login(props){
                             <Link to="/register">Register Now</Link>
                         </div>
                     </form>
-                    <div className="col-xl-7">
-                        <img className="bd-auth__img" src={form2} alt="login form"></img>
-                    </div>
                 </div>
             </div>
         </React.Fragment>

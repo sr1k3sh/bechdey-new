@@ -1,4 +1,7 @@
 .bd-auth{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     &__form{
         background: $gray-100;
         padding: 2rem 2rem;

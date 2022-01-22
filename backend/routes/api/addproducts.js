@@ -48,7 +48,7 @@ router.post('/addpost',upload.array('file', 10),async(req,res)=>{
         newData
           .save()
           .then(data => res.status(200).json({ message: "update data" }))
-          .catch(err => console.log(err));
+          .catch(err => res.status(400).json({message:"not updated"}));
     }
   });
 });

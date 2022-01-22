@@ -22,7 +22,10 @@ export default function Banner(){
                     
                         {
                             userDetails.user ? 
-                            <h1 className="bd-banner__h1">welcome <strong className="text-primary">{userDetails.user}</strong>.<br></br> You can now post your ads</h1>
+                            <React.Fragment>
+                                <h1 className="bd-banner__h1">welcome <strong className="text-primary">{userDetails.user}</strong>.</h1>
+                                <h1 className="bd-banner__h1"> You can now post your ads</h1>
+                            </React.Fragment>
                             :<h1 className="bd-banner__h1">Selling here is the easy way to make extra money</h1>
 
                         }

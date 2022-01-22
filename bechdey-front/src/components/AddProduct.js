@@ -13,6 +13,7 @@ export default function AddProduct(){
     const [usedFor, setUsedFor] = useState("");
     const [file, setFile] = useState([]);
     const userDetails = useAuthState();
+    const [errorMessage, setErrorMessage] = useState({});
     const [imageUrl, setImageUrl] = useState([]);
 
     const history = useHistory();
@@ -20,10 +21,10 @@ export default function AddProduct(){
     const cat = category;
     const loc = location;
 
-    const [Category, setCategory] = useState();
-    const [subCategory, setSubCategory] = useState();
-    const [mainCategory, setMainCategory] = useState();
-    const [getLocation, setLocation] = useState();
+    const [Category, setCategory] = useState("");
+    const [subCategory, setSubCategory] = useState("");
+    const [mainCategory, setMainCategory] = useState("");
+    const [getLocation, setLocation] = useState("");
 
     useEffect(()=>{
     },[])
@@ -56,11 +57,13 @@ export default function AddProduct(){
             ).then(res=>{
                 console.log(res);
                 history.push('/')
-            });
+            }).catch(err=>setErrorMessage(err.response.data));
         }catch(err){
-            console.log(err);
+            console.log(err.errors);
         }
     }
+
+    console.log(errorMessage)
 
     const onImageuploadChange = async(e) =>{
         e.preventDefault();
@@ -82,20 +85,35 @@ export default function AddProduct(){
                     </div>
                     <div className="bd-addform__inputgroup mb-4">
                         <label className="form-label">Title</label>
-                        <input className="form-control" name="title" placeholder="enter title of product" onChange={e=>setTitle(e.target.value)}></input>
+                        <input className={errorMessage?.title?"form-control is-invalid":"form-control"} name="title" placeholder="enter title of product" onChange={e=>setTitle(e.target.value)}></input>
+                        {
+                            errorMessage?.title && <div className="invalid-feedback">
+                                {errorMessage?.title}
+                            </div>
+                        }
                     </div>
                     <div className="bd-addform__inputgroup mb-4">
                         <label className="form-label">Description</label>
-                        <textarea className="form-control" name="description" placeholder="Add Description" onChange={e=>setDescription(e.target.value)}></textarea>
+                        <textarea className={errorMessage?.description?"form-control is-invalid":"form-control"} name="description" placeholder="Add Description" onChange={e=>setDescription(e.target.value)}></textarea>
+                        {
+                            errorMessage?.description && <div className="invalid-feedback">
+                                {errorMessage?.description}
+                            </div>
+                        }
                     </div>
                     <div className="bd-addform__inputgroup mb-4">
                         <label className="form-label">Price</label>
-                        <input className="form-control" name="price" type="number" placeholder="price in NPR" onChange={e=>setPrice(e.target.value)}></input>
+                        <input className={errorMessage?.price?"form-control is-invalid":"form-control"} name="price" type="number" placeholder="price in NPR" onChange={e=>setPrice(e.target.value)}></input>
+                        {
+                            errorMessage?.price && <div className="invalid-feedback">
+                                {errorMessage?.price}
+                            </div>
+                        }
                     </div>
                     <div className="bd-addform__inputgroup mb-4">
                         <span>Is price negotiable?</span>
                         <div className="form-check form-check-inline">
-                            <input className="form-check-input" name="negotiate" type="radio" value={false} id="bechdey_fixed" onChange={e=>setNegotiate(e.target.value)}/>
+                            <input className="form-check-input" defaultChecked name="negotiate" type="radio" value={false} id="bechdey_fixed" onChange={e=>setNegotiate(e.target.value)}/>
                             <label className="form-check-label" htmlFor="bechdey_fixed">
                                 Fixed
                             </label>
@@ -110,7 +128,7 @@ export default function AddProduct(){
                     <div className="bd-addform__inputgroup mb-4">
                         <span>Condition</span>
                         <div className="form-check form-check-inline">
-                            <input className="form-check-input" name="condition" type="radio" value="Brand New" onChange={e=>setCondition(e.target.value)} id="bechdey_brandnew"/>
+                            <input className="form-check-input" defaultChecked name="condition" type="radio" value="Brand New" onChange={e=>setCondition(e.target.value)} id="bechdey_brandnew"/>
                             <label className="form-check-label" htmlFor="bechdey_brandnew">
                                 Brand New
                             </label>
@@ -136,12 +154,17 @@ export default function AddProduct(){
                     </div>
                     <div className="bd-addform__inputgroup mb-4">
                         <label className="form-label">Used for</label>
-                        <input className="form-control" name="usedFor" placeholder="Eg. Months" onChange={e=>setUsedFor(e.target.value)}></input>
+                        <input className={errorMessage?.usedFor?"form-control is-invalid":"form-control"} name="usedFor" placeholder="Eg. Months" onChange={e=>setUsedFor(e.target.value)}></input>
+                        {
+                            errorMessage?.usedFor && <div className="invalid-feedback">
+                                {errorMessage?.usedFor}
+                            </div>
+                        }
                     </div>
                     {
                         loc[0].children && <div className="bd-addform__inputgroup mb-4">
                             <label className="form-label">Location</label>
-                                 <select className="form-control" name="location" defaultValue={'DEFAULT'} onChange={e=>setLocation(e.target.value)}>
+                                 <select className={errorMessage?.location?"form-control is-invalid":"form-control"} name="location" defaultValue='DEFAULT' onChange={e=>setLocation(e.target.value)}>
                                     <option key="0_cities" value="DEFAULT">Select area of you city</option>
                                     {
                                         loc[0].children.map((g,i)=>{
@@ -149,12 +172,16 @@ export default function AddProduct(){
                                         })
                                     }
                                 </select>
-                                
+                                {
+                                    errorMessage?.location && <div className="invalid-feedback">
+                                        {errorMessage?.location}
+                                    </div>
+                                }
                         </div>
                     }
                     <div className="bd-addform__inputgroup mb-4">
                         <label className="form-label">Category</label>
-                        <select className="form-control" name="category" defaultValue={'DEFAULT'} onChange={e=>setCategory(e.target.value)}>
+                        <select className={errorMessage?.category?"form-control is-invalid":"form-control"} name="category" defaultValue='DEFAULT' onChange={e=>setCategory(e.target.value)}>
                             <option value="DEFAULT">Select category</option>
                             {
                                 cat.map((g,i)=>{
@@ -162,11 +189,16 @@ export default function AddProduct(){
                                 })
                             }
                         </select>
+                        {
+                            errorMessage?.category && <div className="invalid-feedback">
+                                {errorMessage?.category}
+                            </div>
+                        }
                     </div>
                     {
                         Category && <div className="bd-addform__inputgroup mb-4">
                             <label className="form-label">Sub category</label>
-                                 <select className="form-control" name="subcategory" defaultValue={'DEFAULT'} onChange={e=>setSubCategory(e.target.value)}>
+                                 <select className={errorMessage?.subcategory?"form-control is-invalid":"form-control"} name="subcategory" defaultValue='DEFAULT' onChange={e=>setSubCategory(e.target.value)}>
                                     <option key="0_sub-main" value="DEFAULT">Select sub category</option>
                                     {
                                         cat.filter(c=>c.value === Category)[0].children.map((g,i)=>{
@@ -174,13 +206,17 @@ export default function AddProduct(){
                                         })
                                     }
                                 </select>
-                                
+                                {
+                                    errorMessage?.subcategory && <div className="invalid-feedback">
+                                        {errorMessage?.subcategory}
+                                    </div>
+                                }
                         </div>
                     }
                     {
                         Category && subCategory && <div className="bd-addform__inputgroup mb-4">
                             <label className="form-label">Sub category</label>
-                                 <select className="form-control" name="maincategory" defaultValue={'DEFAULT'} onChange={e=>setMainCategory(e.target.value)}>
+                                 <select className={errorMessage?.maincategory?"form-control is-invalid":"form-control"} name="maincategory" defaultValue={'DEFAULT'} onChange={e=>setMainCategory(e.target.value)}>
                                     <option key="0_sub-main-value" value="DEFAULT">Select sub category</option>
                                     {
                                         cat.filter(c=>c.value === Category)[0].children.filter(ch=>ch.value === subCategory)[0].children.map((g,i)=>{
@@ -188,7 +224,11 @@ export default function AddProduct(){
                                         })
                                     }
                                 </select>
-                                
+                                {
+                                    errorMessage?.maincategory && <div className="invalid-feedback">
+                                        {errorMessage?.maincategory}
+                                    </div>
+                                }
                         </div>
                     }
                     

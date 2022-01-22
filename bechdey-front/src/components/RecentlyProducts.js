@@ -115,7 +115,7 @@ export default function RecentlyProducts(){
             <div className="container-xl">
                 <div className="row">
                     <h3>Filters</h3>
-                    <aside className="col-xl-3">
+                    <aside className="col-xl-3 mb-4">
                         <div className="accordion" id="accordionExample">
                             <div className="accordion-item">
                                 <h2 className="accordion-header" id="headingOne">

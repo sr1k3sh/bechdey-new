@@ -1,5 +1,9 @@
 .bd-pagination{
     &__wrapper{
         margin-top: 1rem;
+        & .pagination{
+            align-items: center;
+            justify-content: center;
+        }
     }
 }
