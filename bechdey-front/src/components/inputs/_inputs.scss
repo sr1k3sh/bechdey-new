@@ -1,15 +1,18 @@
 .bd-input{
-    &__search{
-        border-radius: 1rem;
+    &__search.form-control{
+        border-radius: 2rem;
+        padding: 1rem 1.5rem;
         background: transparent;
         border-right-color:transparent ;
         padding-right: 0;
+        min-width: 350px;
     }
 
     &__text{
-        border-radius: 1rem;
+        border-radius: 2rem;
         background: transparent;
         border-left-color: transparent;
+        padding-right: 1.5rem;
 
     }
 }

@@ -21,7 +21,63 @@ export default function Mainpage(){
     return(
         <React.Fragment>
             <Banner></Banner>
-            <div className="container-xl mt-5">
+            <div className="container-xl mt-3">
+                <Title title="Featured Ads"></Title>
+                { state.dataLoading ? 
+                    <div className="bd-product-wrapper">
+                        {
+                            <React.Fragment>
+                                <ProductCard skeleton={true}></ProductCard>   
+                                <ProductCard skeleton={true}></ProductCard>   
+                                <ProductCard skeleton={true}></ProductCard>   
+                                <ProductCard skeleton={true}></ProductCard>   
+                            </React.Fragment>
+                         
+                        }
+                    </div> 
+                     : 
+                    <div className="bd-product-wrapper">
+                        {
+                            state.data && state.data.map((s,i)=>
+                                <ProductCard data={s} key={i}></ProductCard>
+                            )
+                        }
+                    </div>
+                }
+                <span className="bd__more"><Link className="bd__link" to="/recent">see more</Link></span>
+            </div>
+
+            <hr className="container-xl"></hr>
+
+            <div className="container-xl mt-3">
+                <Title title="Liked By Viewer"></Title>
+                { state.dataLoading ? 
+                    <div className="bd-product-wrapper">
+                        {
+                            <React.Fragment>
+                                <ProductCard skeleton={true}></ProductCard>   
+                                <ProductCard skeleton={true}></ProductCard>   
+                                <ProductCard skeleton={true}></ProductCard>   
+                                <ProductCard skeleton={true}></ProductCard>   
+                            </React.Fragment>
+                         
+                        }
+                    </div> 
+                     : 
+                    <div className="bd-product-wrapper">
+                        {
+                            state.data && state.data.map((s,i)=>
+                                <ProductCard data={s} key={i}></ProductCard>
+                            )
+                        }
+                    </div>
+                }
+                <span className="bd__more"><Link className="bd__link" to="/recent">see more</Link></span>
+            </div>
+
+            <hr className="container-xl"></hr>
+
+            <div className="container-xl mt-3">
                 <Title title="Recently added"></Title>
                 { state.dataLoading ? 
                     <div className="bd-product-wrapper">
@@ -46,6 +102,8 @@ export default function Mainpage(){
                 }
                 <span className="bd__more"><Link className="bd__link" to="/recent">see more</Link></span>
             </div>
+
+            <hr className="container-xl"></hr>
         </React.Fragment>
     )
 }
