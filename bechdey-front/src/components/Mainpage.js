@@ -24,7 +24,19 @@ export default function Mainpage(){
             <div className="container-xl mt-5">
                 <Title title="Recently added"></Title>
                 { state.dataLoading ? 
-                    <h2>loading</h2> : <div className="bd-product-wrapper">
+                    <div className="bd-product-wrapper">
+                        {
+                            <React.Fragment>
+                                <ProductCard skeleton={true}></ProductCard>   
+                                <ProductCard skeleton={true}></ProductCard>   
+                                <ProductCard skeleton={true}></ProductCard>   
+                                <ProductCard skeleton={true}></ProductCard>   
+                            </React.Fragment>
+                         
+                        }
+                    </div> 
+                     : 
+                    <div className="bd-product-wrapper">
                         {
                             state.data && state.data.map((s,i)=>
                                 <ProductCard data={s} key={i}></ProductCard>

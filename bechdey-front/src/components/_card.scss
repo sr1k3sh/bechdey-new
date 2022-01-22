@@ -3,17 +3,25 @@
     border:1px solid $gray-100;
     border-radius: 16px;
     background: $gray-100;
+
+    &--skeleton{
+        width: 300px;
+        height: 390px;
+        z-index: 0;
+        background: $white;
+    }
     &__img-wrapper{
         width: 100%;
         position: relative;
         background: #eeee;
         border-radius: 16px;
-        & img{
-            border-radius: 16px;
-            width: 300px;
-            height: 250px;
-            object-fit: cover;
-        }
+    }
+    
+    &__img{
+        border-radius: 16px;
+        width: 300px;
+        height: 250px;
+        object-fit: cover;
     }
 
     &__details{

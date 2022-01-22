@@ -197,7 +197,17 @@ export default function RecentlyProducts(){
                         <span>Total ads: {dataCount?.count}</span>
                         <h2>Recently Added</h2>
                         { state.dataLoading ? 
-                            <h2>loading</h2> : <div className="bd-product-wrapper__list">
+                            <React.Fragment>
+                                <ProductCard skeleton={true}></ProductCard>   
+                                <ProductCard skeleton={true}></ProductCard>   
+                                <ProductCard skeleton={true}></ProductCard>   
+                                <ProductCard skeleton={true}></ProductCard>
+                                <ProductCard skeleton={true}></ProductCard>   
+                                <ProductCard skeleton={true}></ProductCard>   
+                            </React.Fragment>
+                            
+                            : 
+                            <div className="bd-product-wrapper__list">
                                 {
                                     state.data.map((s,i)=>
                                         <ProductCard data={s} key={i}></ProductCard>
