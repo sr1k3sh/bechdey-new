@@ -6,6 +6,7 @@ import { AuthProvider } from './context/Context';
 import Navbar from './components/Navbar';
 import './../node_modules/bootstrap/js/src/dropdown';
 import './../node_modules/bootstrap/js/src/collapse';
+import Footer from './components/Footer';
 function App() {
   return (
     <AuthProvider>
@@ -22,6 +23,7 @@ function App() {
 						  />
             ))}
           </Switch>
+          <Footer></Footer>
         </Router>
       </div>
     </AuthProvider>

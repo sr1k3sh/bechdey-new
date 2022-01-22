@@ -2,7 +2,6 @@
     position: sticky;
     top:0;
     z-index: 1;
-    --bs-bg-opacity: 0.7;
     backdrop-filter: blur(32px);
     &__topbar{
         display: flex;
@@ -11,7 +10,6 @@
     }
     &__icon{
         font-weight: bold;
-        color: $blue;
         text-decoration: none;
         display: inline-block;
     }

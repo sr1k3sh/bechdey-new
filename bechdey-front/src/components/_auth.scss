@@ -1,12 +1,11 @@
 .bd-auth{
-    display: flex;
-    align-items: center;
-    justify-content: center;
     &__form{
         background: $gray-100;
         padding: 2rem 2rem;
         border-radius: 1rem;
         margin: 0 auto;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
     }
     &__img{
         width: 100%;

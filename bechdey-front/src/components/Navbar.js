@@ -35,7 +35,7 @@ export default function Navbar(){
                     <div className="col-12">
                         <div className="navbar__mainbar">
                             <div className="navbar__icon">
-                                <h2><Link className="navbar__icon" to="/">Bechdey.</Link></h2>
+                                <h2><Link className="navbar__icon bd__icon link-secondary" to="/">Bechdey.</Link></h2>
                             </div>
                             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <span className="navbar-toggler-icon"></span>

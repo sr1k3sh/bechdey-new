@@ -5,6 +5,7 @@ import { category, location } from "../context/catagories";
 import { dataReducer, initialDataState } from "../context/reducer";
 import ProductCard from "./ProductCard";
 import CheckboxTree from 'react-checkbox-tree';
+import BreadCrumb from "./breadcrumb";
 
 export default function RecentlyProducts(){
     const [state, dispatch] = useReducer(dataReducer, initialDataState);
@@ -113,8 +114,8 @@ export default function RecentlyProducts(){
     return(
         <React.Fragment>
             <div className="container-xl">
-                <div className="row">
-                    <h3>Filters</h3>
+                <div className="row mt-3">
+                    <BreadCrumb></BreadCrumb>
                     <aside className="col-xl-3 mb-4">
                         <div className="accordion" id="accordionExample">
                             <div className="accordion-item">

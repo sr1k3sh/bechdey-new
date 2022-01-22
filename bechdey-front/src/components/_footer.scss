@@ -1,0 +1,25 @@
+.bd-footer{
+    background: $gray-900;
+    padding: 2rem;
+    
+    &__quicklinks{
+        color: $white;
+        padding:0;
+        list-style: none;
+    }
+
+    &__link{
+        text-decoration: none;
+        color: $white;
+        font-size: 0.875rem;
+    }
+
+    &__title{
+        color: $white;
+        margin-bottom: 1rem;
+    }
+
+    &__sub-title{
+        font-size: 0.875rem;
+    }
+}

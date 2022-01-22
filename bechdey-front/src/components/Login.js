@@ -41,8 +41,8 @@ export default function Login(props){
     return(
         <React.Fragment>
             <div className='bd-auth container-xl'>
-                <div className='row mt-3'>
-                    <form className='bd-auth__form col-xl-5' onSubmit={onLogin}>
+                <div className='row'>
+                    <form className='bd-auth__form col-md-5' onSubmit={onLogin}>
                         <h2 className='mb-5'>Login to you <strong className='text-primary'>Account</strong></h2>
                         <div className="col-xl-12 mb-4">
                             <label className='form-label'>Email</label>

@@ -43,7 +43,7 @@ export default function Register(){
     return (
         <React.Fragment>
             <div className='bd-auth container-xl'>
-                <div className="row mt-3">
+                <div className="row">
                     {/* <div className="col-xl-7">
                         <img className="bd-auth__img" src={form2} alt="register form"></img>
                     </div> */}
