@@ -1,0 +1,52 @@
+.bd-product-detail{
+    &__sort-info-wrapper{
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__info-wrapper{
+        display: flex;
+        flex-direction: column;
+        @include media-breakpoint-up(sm){
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+
+    &__sort-info,&__price-detail{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+
+    &__price-detail{
+        align-items: flex-end;
+        gap: 0;
+    }
+
+    &__title-wrapper{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__price{
+        font-weight: bold;
+        font-size: 2.5rem;
+        color: $primary;
+        background: $gray-100;
+    }
+
+    &__price-nego{
+        font-size: 1.25rem;
+    }
+
+    &__img-slider{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}

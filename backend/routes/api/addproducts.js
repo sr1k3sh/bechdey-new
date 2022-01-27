@@ -78,6 +78,12 @@ router.post('/filter/ad',function(req,res){
   AddForm.paginate( req.query, {customLabels: myCustomLabels, page: req.query.page, limit: req.query.limit ,sort: { createdAt: -1 }}).then(result => {
       res.json(result)
     });
-})
+});
+
+
+router.post('/get/productbyid',function(req,res){
+  AddForm.findById({_id:req.query.id}).then(response=>res.status(200).json(response));
+});
+
 
 module.exports = router;

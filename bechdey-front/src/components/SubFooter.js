@@ -7,7 +7,7 @@ export default function SubFooter(){
             <div className="container-xl">
                 <div className="row">
                     <div className="col-md-4">
-                        <img src={device} alt="playstore"></img>
+                        <img className="bd-footer__img"src={device} alt="playstore"></img>
                     </div>
                     <div className="col-md-4 align-self-center">
                         <h1 className="bd-footer__h1">

@@ -17,16 +17,16 @@ export default function Footer(){
                         <h3 className="bd__title bd-footer__title">Quick Categories</h3>
                         <ul className="bd-footer__quicklinks">
                             <li className="bd-footer__item">
-                                <Link className="bd-footer__link" to="/mobile">Mobile Phone & Accessories</Link>
+                                <Link className="bd-footer__link link-light" to="/mobile">Mobile Phone & Accessories</Link>
                             </li>
                             <li className="bd-footer__item">
-                                <Link className="bd-footer__link" to="/">Electronics</Link>
+                                <Link className="bd-footer__link link-light" to="/">Electronics</Link>
                             </li>
                             <li className="bd-footer__item">
-                                <Link className="bd-footer__link" to="/">Health & Fitness</Link>
+                                <Link className="bd-footer__link link-light" to="/">Health & Fitness</Link>
                             </li>
                             <li className="bd-footer__item">
-                                <Link className="bd-footer__link" to="/">Real States</Link>
+                                <Link className="bd-footer__link link-light" to="/">Real States</Link>
                             </li>
                         </ul>
                     </div>
@@ -34,16 +34,16 @@ export default function Footer(){
                         <h3 className="bd__title bd-footer__title">Popular Location</h3>
                         <ul className="bd-footer__quicklinks">
                             <li className="bd-footer__item">
-                                <Link className="bd-footer__link" to="/">Kathmandu</Link>
+                                <Link className="bd-footer__link link-light" to="/">Kathmandu</Link>
                             </li>
                             <li className="bd-footer__item">
-                                <Link className="bd-footer__link" to="/">Butwal</Link>
+                                <Link className="bd-footer__link link-light" to="/">Butwal</Link>
                             </li>
                             <li className="bd-footer__item">
-                                <Link className="bd-footer__link" to="/">Chitwan</Link>
+                                <Link className="bd-footer__link link-light" to="/">Chitwan</Link>
                             </li>
                             <li className="bd-footer__item">
-                                <Link className="bd-footer__link" to="/">Pokhara</Link>
+                                <Link className="bd-footer__link link-light" to="/">Pokhara</Link>
                             </li>
                         </ul>
                     </div>
@@ -51,16 +51,16 @@ export default function Footer(){
                         <h3 className="bd__title bd-footer__title">Others</h3>
                         <ul className="bd-footer__quicklinks">
                             <li className="bd-footer__item">
-                                <Link className="bd-footer__link" to="/">About Bechey</Link>
+                                <Link className="bd-footer__link link-light" to="/">About Bechey</Link>
                             </li>
                             <li className="bd-footer__item">
-                                <Link className="bd-footer__link" to="/">Privacy</Link>
+                                <Link className="bd-footer__link link-light" to="/">Privacy</Link>
                             </li>
                             <li className="bd-footer__item">
-                                <Link className="bd-footer__link" to="/">Terms and Condition</Link>
+                                <Link className="bd-footer__link link-light" to="/">Terms and Condition</Link>
                             </li>
                             <li className="bd-footer__item">
-                                <Link className="bd-footer__link" to="/">legals</Link>
+                                <Link className="bd-footer__link link-light" to="/">legals</Link>
                             </li>
                         </ul>
                     </div>

@@ -51,6 +51,38 @@ export const dataReducer = (initialDataState, action) => {
 	}
 }
 
+
+export const initProductState = {
+	isLoading:true,
+	data:null,
+	error:null
+}
+
+export const productDetailReducer = (initProductState, action) => {
+	switch (action.type) {
+		case "PRODUCT_LOADING":
+			return {
+				...initProductState,
+				isLoading:true,
+			}
+		case "PRODUCT_LOADED":
+			return {
+				...initProductState,
+				isLoading:false,
+				data:action.payload,
+			}
+		case "PRODUCT_ERROR":
+			return{
+				...initProductState,
+				isLoading:false,
+				data:null,
+				error:action.error
+			}
+		default:
+			throw new Error(`Unhandled action type: ${action.type}`);
+	}
+}
+
 export const AuthReducer = (initialState, action) => {
 	switch (action.type) {
 		case 'REQUEST_LOGIN':
@@ -92,6 +124,7 @@ export const initRegisterState = {
 	data:null,
 	error:null,
 }
+
 export const RegisterReducer = (initRegisterState, action) =>{
 	switch (action.type) {
 		case 'REQUEST_REGISTER':
