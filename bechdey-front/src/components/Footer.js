@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SubFooter from "./SubFooter";
 
 export default function Footer(){
     return(
         <React.Fragment>
-            <footer className="bd-footer container-xl mt-5">
+            <SubFooter></SubFooter>
+            <footer className="bd-footer container-xl">
                 <div className="row">
                     <div className="col-md-3">
                         <h2 className="text-light bd__icon">Bechdey.</h2>
@@ -29,19 +31,19 @@ export default function Footer(){
                         </ul>
                     </div>
                     <div className="col-md-3">
-                        <h3 className="bd__title bd-footer__title">Mostly viewed</h3>
+                        <h3 className="bd__title bd-footer__title">Popular Location</h3>
                         <ul className="bd-footer__quicklinks">
                             <li className="bd-footer__item">
-                                <Link className="bd-footer__link" to="/">Mobile Phone</Link>
+                                <Link className="bd-footer__link" to="/">Kathmandu</Link>
                             </li>
                             <li className="bd-footer__item">
-                                <Link className="bd-footer__link" to="/">Cars</Link>
+                                <Link className="bd-footer__link" to="/">Butwal</Link>
                             </li>
                             <li className="bd-footer__item">
-                                <Link className="bd-footer__link" to="/">Motor Bike</Link>
+                                <Link className="bd-footer__link" to="/">Chitwan</Link>
                             </li>
                             <li className="bd-footer__item">
-                                <Link className="bd-footer__link" to="/">Lands</Link>
+                                <Link className="bd-footer__link" to="/">Pokhara</Link>
                             </li>
                         </ul>
                     </div>

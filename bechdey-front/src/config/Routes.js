@@ -5,6 +5,7 @@ import Userpage from "../components/Userpage";
 import AddProduct from "../components/AddProduct";
 import RecentlyProducts from "../components/RecentlyProducts";
 import Register from "../components/Register";
+import ProductDetail from "../components/ProductDetail";
 
 const routes = [
     {
@@ -33,6 +34,11 @@ const routes = [
         isPrivate:false
     },
     {
+        path:'/detailpage/:id',
+        component:ProductDetail,
+        isPrivate:false
+    },
+    {
         path:"/",
         component:Mainpage,
         isPrivate:false
@@ -41,7 +47,7 @@ const routes = [
         path:"/*",
         component:NotFound,
         isPrivate:false
-    }
+    },
     // {
     //     path:"/",
     //     component:Mainpage,

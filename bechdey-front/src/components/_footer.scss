@@ -1,7 +1,7 @@
 .bd-footer{
     background: $gray-900;
     padding: 2rem;
-    
+
     &__quicklinks{
         color: $white;
         padding:0;
@@ -21,5 +21,9 @@
 
     &__sub-title{
         font-size: 0.875rem;
+    }
+
+    &__h1{
+        font-weight: 200;
     }
 }

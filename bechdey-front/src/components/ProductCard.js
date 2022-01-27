@@ -1,6 +1,7 @@
 import React from "react";
 import dummy from './../assets/images/banner.jpg';
 import Skeleton from 'react-loading-skeleton';
+import { Link } from "react-router-dom";
 export default function ProductCard(props){
 
     const {data} = props;
@@ -47,6 +48,7 @@ export default function ProductCard(props){
                             <span className="bd-product-card__date">{new Date(data.createdAt).toDateString().split(" ").splice(1).join(" ")}</span>
                         </div>
                     </div>
+                    <Link className="bd-product-card__detail-link" to={"/detailpage/"+data._id}></Link>
                 </article>
             }
         </React.Fragment>
