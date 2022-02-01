@@ -29,10 +29,12 @@ export default function AddProduct(){
     useEffect(()=>{
     },[])
 
+    console.log(userDetails)
     const onSubmitPost = async(e) =>{
         e.preventDefault();
         const formData = new FormData();
         formData.append('userId',userDetails.userId);
+        formData.append('user',userDetails.user);
         formData.append('title',title);
         formData.append("description",description);
         formData.append("price",price);
@@ -46,6 +48,7 @@ export default function AddProduct(){
         formData.append('subcategory',subCategory);
         formData.append('maincategory',mainCategory);
         formData.append('location',getLocation);
+
         try{
             await axios(
                 {
@@ -82,6 +85,10 @@ export default function AddProduct(){
                     <div className="bd-addform__inputgroup mb-4">
                         <label className="form-label d-none">Title</label>
                         <input type="hidden" className="form-control" name="userId" defaultValue={userDetails.userId}></input>
+                    </div>
+                    <div className="bd-addform__inputgroup mb-4">
+                        <label className="form-label d-none">user name</label>
+                        <input type="hidden" className="form-control" name="user" defaultValue={userDetails.user}></input>
                     </div>
                     <div className="bd-addform__inputgroup mb-4">
                         <label className="form-label">Title</label>

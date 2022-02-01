@@ -7,6 +7,10 @@ const addFormSchema = new Schema({
         type:String,
         required:true
     },
+    userDetail:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"users"
+    },
     title:{
         type:String,
         required:true

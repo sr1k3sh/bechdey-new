@@ -6,6 +6,7 @@ const validatePostForm = require("../../validation/postProduct");
 // Load User model
 
 const AddForm = require("../../models/AddForm");
+const Users = require("../../models/User");
 
 
 const multer = require("multer");
@@ -32,6 +33,7 @@ router.post('/addpost',upload.array('file', 10),async(req,res)=>{
     } else {
       const newData = new AddForm({
         userId: req.body.userId,
+        user:req.body.user,
         title: req.body.title,
         description: req.body.description,
         price: req.body.price,
@@ -44,7 +46,9 @@ router.post('/addpost',upload.array('file', 10),async(req,res)=>{
         maincategory:req.body.maincategory,
         location:req.body.location
       });
-      
+
+      newData.userDetail = Users.findOne({_id:req.body.userId}).populate("email");
+      console.log(Users.findOne({_id:req.body.userId}).populate("name","email"));
         newData
           .save()
           .then(data => res.status(200).json({ message: "update data" }))
@@ -82,7 +86,9 @@ router.post('/filter/ad',function(req,res){
 
 
 router.post('/get/productbyid',function(req,res){
-  AddForm.findById({_id:req.query.id}).then(response=>res.status(200).json(response));
+  AddForm.findById({_id:req.query.id}).then(response=>{
+    res.status(200).json(response)
+  });
 });
 
 
